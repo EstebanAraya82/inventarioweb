@@ -98,15 +98,15 @@
     $usuario=limpiar_cadena($_POST['usuario_usuario']);
     $clave_1=limpiar_cadena($_POST['usuario_clave_1']);
     $clave_2=limpiar_cadena($_POST['usuario_clave_2']);
-    $estado=limpiar_cadena($_POST['estado_id']);
-    $rol=limpiar_cadena($_POST['rol_id'])
+    $estado=limpiar_cadena($_POST['estado_nombre']);
+    $rol=limpiar_cadena($_POST['rol_nombre'])
 
 
     /* Verificando campos obligatorios del usuario */
-    if($nombre=="" || $apellido=="" || $usuario=="" || $clave_1=="" || $clave_2=="" || $estado=="" || $rol==""){
+     if($nombre=="" || $apellido=="" || $usuario=="" || $estado=="" || $rol==""){
         echo '
             <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrio un error inesperado!</strong><br>
                 No has llenado todos los campos que son obligatorios
             </div>
         ';
