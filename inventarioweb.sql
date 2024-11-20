@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2024 a las 22:04:06
+-- Tiempo de generación: 20-11-2024 a las 04:01:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,7 +34,12 @@ CREATE TABLE `activo` (
   `activo_codigo` varchar(50) NOT NULL,
   `activo_marca` varchar(50) NOT NULL,
   `activo_modelo` varchar(50) NOT NULL,
-  `activo_serial` varchar(50) NOT NULL
+  `activo_serial` varchar(50) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `piso_id` int(11) NOT NULL,
+  `posición_id` int(11) NOT NULL,
+  `area_id` int(11) NOT NULL,
+  `servicio_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -118,7 +123,8 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`rol_id`, `rol_nombre`) VALUES
 (1, 'Administrador'),
-(2, 'Finanzas');
+(2, 'Finanzas'),
+(3, 'Gerencia');
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,12 @@ CREATE TABLE `usuario` (
 -- Indices de la tabla `activo`
 --
 ALTER TABLE `activo`
-  ADD PRIMARY KEY (`activo_id`);
+  ADD PRIMARY KEY (`activo_id`),
+  ADD KEY `categoria_id` (`categoria_id`),
+  ADD KEY `piso_id` (`piso_id`),
+  ADD KEY `posición_id` (`posición_id`),
+  ADD KEY `area_id` (`area_id`),
+  ADD KEY `servicio_id` (`servicio_id`);
 
 --
 -- Indices de la tabla `area`
@@ -252,7 +263,7 @@ ALTER TABLE `posicion`
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
