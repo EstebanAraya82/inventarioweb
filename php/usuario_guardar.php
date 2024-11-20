@@ -66,27 +66,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z]{4,50}",$estado)){
-        echo '
-            <div class="notification is-danger is-light">
-               <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                El estado no coincide con el formato solicitado
-            </div>
-        ';
-        exit();
-    }
-
-    if(verificar_datos("[a-zA-Z]{4,50}",$rol)){
-        echo '
-            <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                El estado no coincide con el formato solicitado
-            </div>
-        ';
-        exit();
-    }
-
-     /* Verificar correo */
+   /* Verificar correo */
      if($correo!=""){
         if(filter_var($correo, FILTER_VALIDATE_EMAIL)){
             $check_correo=conexion();
@@ -152,6 +132,7 @@
           ';
           exit();
       }
+      $check_estado=null;
 
     /* verificar rol */
     $check_rol=conexion();
@@ -165,10 +146,11 @@
         ';
         exit();
     }
+    $check_rol=null;
 
     /* Guardando datos */
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario(usuario_nombre,usuario_apellido,usuario_usuario,usuario_corrreo,
+    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario (usuario_nombre,usuario_apellido,usuario_usuario,usuario_corrreo,
     usuario_clave,estado_id,rol_id) VALUES(:nombre,:apellido,:usuario,:correo,:clave,:estado,:rol)");
 
     $marcadores=[

@@ -2,17 +2,26 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
+	$campos="usuario.usuario_id,usuario.usuario_nombre,usuario.usuario_apellido,usuario.usuario_usuario,usuario.usuario_correo,usuario.estado_id,usuario.rol_id,estado.estado_id,estado.estado_nombre,rol.rol_id,rol.rol_nombre";
+
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_correo LIKE '%$busqueda%' OR estado_nombre LIKE '%$busqueda%' OR rol_nombre LIKE '%$busqueda%')) ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estado ON usuario.estado_id=estado.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.usuario_nombre LIKE '%$busqueda%' 
+		OR usuario.usuario_apellido LIKE '%$busqueda%' OR usuario.usuario_correo LIKE '%$busqueda%' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE ((usuario_id!='".$_SESSION['id']."') AND (usuario_nombre LIKE '%$busqueda%' OR usuario_apellido LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%' OR usuario_correo LIKE '%$busqueda%' OR estado_nombre LIKE '%$busqueda%' OR rol_nombre LIKE '%$busqueda%'))";
+		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_nombre LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%'";
 
-	}else{
+	} /* elseif($estado_id>0){
 
-		$consulta_datos="SELECT * FROM usuario WHERE usuario_id!='".$_SESSION['id']."' ORDER BY usuario_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estado ON usuario.estado_id=estado.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.estado_id='$estado_id' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_id!='".$_SESSION['id']."'";
+		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE estado_id='$estado_id'";
+
+	} */ else{
+
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estado ON usuario.estado_id=estado.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
+
+		$consulta_total="SELECT COUNT(usuario_id) FROM usuario";
 		
 	}
 
@@ -38,8 +47,7 @@
 					<th>Correo</th>
                     <th>Estado</th>
                     <th>Rol</th>
-					<th colspan="2">Opciones</th>
-                </tr>
+					</tr>
             </thead>
             <tbody>
 	';
@@ -60,10 +68,7 @@
 					<td>
 					<a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
-                    <td>
-                    <a href="'.$url.$pagina.'&user_id_del='.$rows['usuario_id'].'" class="button is-danger is-rounded is-small">Eliminar</a>
-                    </td>
-                </tr>
+                    </tr>
             ';
             $contador++;
 		}
