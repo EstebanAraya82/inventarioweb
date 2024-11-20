@@ -15,13 +15,13 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombres</label>
-				  	<input class="input" type="text" name="usuario_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
+				  	<input class="input" type="text" name="usuario_nombre" placeholder="Ingrese nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		  	<div class="column">
 		    	<div class="control">
 					<label>Apellidos</label>
-				  	<input class="input" type="text" name="usuario_apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
+				  	<input class="input" type="text" name="usuario_apellido" placeholder="Ingrese apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		</div>
@@ -29,13 +29,13 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Usuario</label>
-				  	<input class="input" type="text" name="usuario_usuario" pattern="[a-zA-Z0-9@.]{4,50}" maxlength="50" required >
+				  	<input class="input" type="text" name="usuario_usuario" placeholder="Ingrese usuario" pattern="[a-zA-Z0-9@.]{4,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		  	<div class="column">
 		    	<div class="control">
 					<label>Correo</label>
-				  	<input class="input" type="email" name="usuario_correo" maxlength="70" >
+				  	<input class="input" type="email" name="usuario_correo" placeholder="Ingrese correo" maxlength="70" >
 				</div>
 		  	</div>
 		</div>
@@ -58,7 +58,7 @@
 			<label>Estado</label><br>
 			<div class="select is-rounded">
 				<select name="usuario_estado">
-					<option value="" selected="" >Seleccione estado</option>					
+					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
 					    $estados=conexion();
 						$estados=$estados->query("SELECT * From estado");
@@ -78,7 +78,7 @@
 			<label>Rol</label><br>
 			<div class="select is-rounded">
 				<select name="usuario_rol">
-					<option value="" selected="" >Seleccione rol</option>					
+					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
 					    $roles=conexion();
 						$roles=$roles->query("SELECT * From rol");
@@ -95,7 +95,7 @@
 			</div>
 		</div>
 		</div>             
-        </div>   
+       
 		<p class="has-text-centered">
 			<button type="submit" class="button is-info is-rounded">Guardar</button>
 		</p>
