@@ -4,15 +4,15 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM estado WHERE ((estado_id!='".$_SESSION['id']."') AND (estado_nombre LIKE '%$busqueda%')) ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estado WHERE estado_nombre LIKE '%$busqueda%' ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM estado WHERE ((estado_id!='".$_SESSION['id']."') AND (estado_nombre LIKE '%$busqueda%'))";
+		$consulta_total="SELECT COUNT(estado_id) FROM rol WHERE estado_nombre LIKE '%$busqueda%'";
 
-	} else{
+	}else{
 
-		$consulta_datos="SELECT * FROM estado WHERE estado_id!='".$_SESSION['id']."' ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estado ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM estado WHERE estado_id!='".$_SESSION['id']."'";
+		$consulta_total="SELECT COUNT(estado_id) FROM estado";
 		
 	} 
 

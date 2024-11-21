@@ -117,7 +117,7 @@
         ';
         exit();
     }else{
-        $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>10]);
+        $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>7]);
     }
 
       /* verificar estado */
