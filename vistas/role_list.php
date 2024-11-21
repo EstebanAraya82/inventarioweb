@@ -23,7 +23,7 @@
         $registros=3;
         $busqueda="";
 
-        # Paginador usuario #
+        # Paginador rol #
         require_once "./php/rol_listar.php";
     ?>
 </div>

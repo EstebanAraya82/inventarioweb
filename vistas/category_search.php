@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Estados</h1>
-    <h2 class="subtitle">Buscar estado</h2>
+    <h1 class="title">Categorías</h1>
+    <h2 class="subtitle">Buscar categoría</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -12,12 +12,12 @@
             require_once "./php/buscador.php";
         }
 
-        if(!isset($_SESSION['busqueda_estado']) && empty($_SESSION['busqueda_estado'])){
+        if(!isset($_SESSION['busqueda_categoria']) && empty($_SESSION['busqueda_categoria'])){
     ?>
     <div class="columns">
         <div class="column">
             <form action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="usuario">   
+                <input type="hidden" name="modulo_buscador" value="categoria">
                 <div class="field is-grouped">
                     <p class="control is-expanded">
                         <input class="input is-rounded" type="text" name="txt_buscador" placeholder="¿Qué estas buscando?" 
@@ -34,16 +34,21 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol"> 
-                <input type="hidden" name="eliminar_buscador" value="rol">
-                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_estado']; ?>”</strong></p>
+                <input type="hidden" name="modulo_buscador" value="categoria"> 
+                <input type="hidden" name="eliminar_buscador" value="categoria">
+                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_categoria']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
             </form>
         </div>
     </div>
     <?php
-          if(!isset($_GET['page'])){
+            /* Eliminar categoria
+            if(isset($_GET['category_id_del'])){
+                require_once "./php/categoria_eliminar.php";
+            } */
+
+            if(!isset($_GET['page'])){
                 $pagina=1;
             }else{
                 $pagina=(int) $_GET['page'];
@@ -51,14 +56,14 @@
                     $pagina=1;
                 }
             }
-
+     
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=status_search&page="; 
-            $registros=10;
-            $busqueda=$_SESSION['busqueda_estado']; 
+            $url="index.php?vista=category_search&page="; 
+            $registros=5;
+            $busqueda=$_SESSION['busqueda_categoria']; 
 
-            /* Paginador usuario */
-            require_once "./php/estado_listar.php";
+            /* Paginador categoria */
+            require_once "./php/categoria_listar.php";
         } 
     ?>
 </div>

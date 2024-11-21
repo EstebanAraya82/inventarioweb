@@ -53,9 +53,9 @@
             }
 
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=user_search&page="; 
+            $url="index.php?vista=role_search&page="; 
             $registros=10;
-            $busqueda=$_SESSION['busqueda_usuario']; 
+            $busqueda=$_SESSION['busqueda_rol']; 
 
             /* Paginador usuario */
             require_once "./php/rol_listar.php";
