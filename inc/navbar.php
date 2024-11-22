@@ -48,14 +48,18 @@
                     <a class="navbar-item" href="index.php?vista=asset_list">Lista</a>
                     <a class="navbar-item" href="index.php?vista=asset_search">Buscar</a>
                    </div>               
-            </div>
-                          
-           
-            
+            </div>    
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Categorias</a>    
+               <div class="navbar-dropdown">
+                    <a class="navbar-item" href="index.php?vista=category_new"> Nuevo</a>
+                    <a class="navbar-item" href="index.php?vista=category_list">Lista</a>
+                    <a class="navbar-item" href="index.php?vista=category_search">Buscar</a>
+                   </div>               
+            </div>                            
             </div>              
             </div>
-
-                           
+                               
                     <a href="index.php?vista=logout" class="button is-link is-rounded">
                         Salir
                     </a>
