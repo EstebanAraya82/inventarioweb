@@ -11,13 +11,7 @@
 
 		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_nombre LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%'";
 
-	} /* elseif($estado_id>0){
-
-		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estado ON usuario.estado_id=estado.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.estado_id='$estado_id' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
-
-		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE estado_id='$estado_id'";
-
-	} */ else{
+	} else{
 
 		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estado ON usuario.estado_id=estado.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
 
