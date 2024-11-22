@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2024 a las 04:01:18
+-- Tiempo de generación: 22-11-2024 a las 02:42:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `activo` (
   `piso_id` int(11) NOT NULL,
   `posición_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
-  `servicio_id` int(11) NOT NULL
+  `sector_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -129,12 +129,12 @@ INSERT INTO `rol` (`rol_id`, `rol_nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `servicio`
+-- Estructura de tabla para la tabla `sector`
 --
 
-CREATE TABLE `servicio` (
-  `servicio_id` int(11) NOT NULL,
-  `servicio_nombre` varchar(50) NOT NULL
+CREATE TABLE `sector` (
+  `sector_id` int(11) NOT NULL,
+  `sector_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -167,7 +167,8 @@ ALTER TABLE `activo`
   ADD KEY `piso_id` (`piso_id`),
   ADD KEY `posición_id` (`posición_id`),
   ADD KEY `area_id` (`area_id`),
-  ADD KEY `servicio_id` (`servicio_id`);
+  ADD KEY `servicio_id` (`sector_id`),
+  ADD KEY `sector_id` (`sector_id`);
 
 --
 -- Indices de la tabla `area`
@@ -206,10 +207,10 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`rol_id`);
 
 --
--- Indices de la tabla `servicio`
+-- Indices de la tabla `sector`
 --
-ALTER TABLE `servicio`
-  ADD PRIMARY KEY (`servicio_id`);
+ALTER TABLE `sector`
+  ADD PRIMARY KEY (`sector_id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -266,10 +267,10 @@ ALTER TABLE `rol`
   MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `servicio`
+-- AUTO_INCREMENT de la tabla `sector`
 --
-ALTER TABLE `servicio`
-  MODIFY `servicio_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `sector`
+  MODIFY `sector_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
