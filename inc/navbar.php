@@ -56,7 +56,39 @@
                     <a class="navbar-item" href="index.php?vista=category_list">Lista</a>
                     <a class="navbar-item" href="index.php?vista=category_search">Buscar</a>
                    </div>               
-            </div>                            
+            </div>    
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Piso</a>    
+               <div class="navbar-dropdown">
+                    <a class="navbar-item" href="index.php?vista=floor_new"> Nuevo</a>
+                    <a class="navbar-item" href="index.php?vista=floor_list">Lista</a>
+                    <a class="navbar-item" href="index.php?vista=floor_search">Buscar</a>
+                   </div>               
+            </div>  
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Posición</a>    
+               <div class="navbar-dropdown">
+                    <a class="navbar-item" href="index.php?vista=position_new"> Nuevo</a>
+                    <a class="navbar-item" href="index.php?vista=position_list">Lista</a>
+                    <a class="navbar-item" href="index.php?vista=position_search">Buscar</a>
+                   </div>               
+            </div>  
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Área</a>    
+               <div class="navbar-dropdown">
+                    <a class="navbar-item" href="index.php?vista=area_new"> Nuevo</a>
+                    <a class="navbar-item" href="index.php?vista=area_list">Lista</a>
+                    <a class="navbar-item" href="index.php?vista=area_search">Buscar</a>
+                   </div>               
+            </div>  
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Sector</a>    
+               <div class="navbar-dropdown">
+                    <a class="navbar-item" href="index.php?vista=sector_new"> Nuevo</a>
+                    <a class="navbar-item" href="index.php?vista=sector_list">Lista</a>
+                    <a class="navbar-item" href="index.php?vista=sector_search">Buscar</a>
+                   </div>               
+            </div>                          
             </div>              
             </div>
                                
