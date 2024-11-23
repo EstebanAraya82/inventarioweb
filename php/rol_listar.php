@@ -32,6 +32,7 @@
                 <tr class="has-text-centered">
                 	<th>#</th>
                     <th>Rol</th>
+					<th colspan="2">Opciones</th>
                     </tr>
             </thead>
             <tbody>

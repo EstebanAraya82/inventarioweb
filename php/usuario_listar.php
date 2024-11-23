@@ -41,6 +41,7 @@
 					<th>Correo</th>
                     <th>Estado</th>
                     <th>Rol</th>
+					<th colspan="2">Opciones</th>
 					</tr>
             </thead>
             <tbody>

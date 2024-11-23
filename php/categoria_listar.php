@@ -32,10 +32,9 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Nombre</th>
-                    <th>Activos</th>
+                    <th>Categoria</th>
                     <th colspan="2">Opciones</th>
-                </tr>
+                    </tr>
             </thead>
             <tbody>
 	';

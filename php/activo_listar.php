@@ -7,12 +7,19 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 				$consulta_datos="SELECT $campos FROM activo INNER JOIN categoria On activo.categoria_id=categoria.categoria_id INNER JOIN piso On activo.piso_id=piso.piso_id INNER JOIN posicion On activo.posicion_id=posicion.posicion_id
-                INNER JOIN area On activo.area_id=area.area_id INNER JOIN sector ON activo.sector_id=sector.sector_id
-				 where activo.activo_codigo Like '$busqueda%' Or activo.activo_marca Like '%$busqueda%' Or activo.activo_modelo Like '%$busqueda%' Or activo.activo_serial Like '%$busqueda%' Order By activo.activo_codigo Asc Limit $inicio,$registros";
+                INNER JOIN area On activo.area_id=area.area_id INNER JOIN sector ON activo.sector_id=sector.sector_id where activo.activo_codigo Like '$busqueda%' Or activo.activo_marca Like '%$busqueda%' Or activo.activo_modelo Like '%$busqueda%' 
+				Or activo.activo_serial Like '%$busqueda%' Order By activo.activo_codigo Asc Limit $inicio,$registros";
 
 				$consulta_total="SELECT COUNT(activo_id) FROM activo where activo_codigo Like '%$busqueda%' Or activo_serial Like '%$busqueda%'";
 
-    }else{
+			}elseif($categoria_id>0){
+
+				$consulta_datos="SELECT $campos FROM activo INNER JOIN categoria ON activo.categoria_id=categoria.categoria_id INNER JOIN piso On activo.piso_id=piso.piso_id INNER JOIN posicion On activo.posicion_id=posicion.posicion_id
+                INNER JOIN area On activo.area_id=area.area_id INNER JOIN sector ON activo.sector_id=sector.sector_id WHERE activo.categoria_id='$categoria_id' ORDER BY activo.activo_codigo ASC LIMIT $inicio,$registros";
+		
+				$consulta_total="SELECT COUNT(producto_id) FROM producto WHERE categoria_id='$categoria_id'";
+	
+			}else{
 
 
 		$consulta_datos="SELECT $campos FROM activo Inner Join categoria On activo.categoria_id=categoria.categoria_id INNER JOIN piso On activo.piso_id=piso.piso_id INNER JOIN posicion On activo.posicion_id=posicion.posicion_id
@@ -31,6 +38,27 @@
 	$total = (int) $total->fetchColumn();
 
 	$Npaginas =ceil($total/$registros);
+
+	$tabla.='
+	<div class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+            <thead>
+                <tr class="has-text-centered">
+                	<th>#</th>
+                    <th>Código</th>
+                    <th>Marca</th>
+					<th>Modelo</th>
+					<th>Serial</th>
+					<th>Categoria</th>
+					<th>Piso</th>
+					<th>Posición</th>
+					<th>Área</th>
+					<th>Sector</th>		
+   	                <th colspan="2">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+	';
 
 	if($total>=1 && $pagina<=$Npaginas){
 		$contador=$inicio+1;
