@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Roles</h1>
-    <h2 class="subtitle">Buscar rol</h2>
+    <h1 class="title">Áreas</h1>
+    <h2 class="subtitle">Buscar área</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -12,12 +12,12 @@
             require_once "./php/buscador.php";
         }
 
-        if(!isset($_SESSION['busqueda_rol']) && empty($_SESSION['busqueda_rol'])){
+        if(!isset($_SESSION['busqueda_area']) && empty($_SESSION['busqueda_area'])){
     ?>
     <div class="columns">
         <div class="column">
             <form action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol">   
+                <input type="hidden" name="modulo_buscador" value="categoria">
                 <div class="field is-grouped">
                     <p class="control is-expanded">
                         <input class="input is-rounded" type="text" name="txt_buscador" placeholder="¿Qué estas buscando?" 
@@ -34,16 +34,21 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol"> 
-                <input type="hidden" name="eliminar_buscador" value="rol">
-                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_rol']; ?>”</strong></p>
+                <input type="hidden" name="modulo_buscador" value="area"> 
+                <input type="hidden" name="eliminar_buscador" value="area">
+                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_area']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
             </form>
         </div>
     </div>
     <?php
-          if(!isset($_GET['page'])){
+            /* Eliminar area
+            if(isset($_GET['area_id_del'])){
+                require_once "./php/area_eliminar.php";
+            } */
+
+            if(!isset($_GET['page'])){
                 $pagina=1;
             }else{
                 $pagina=(int) $_GET['page'];
@@ -51,14 +56,14 @@
                     $pagina=1;
                 }
             }
-
+     
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=role_search&page="; 
-            $registros=10;
-            $busqueda=$_SESSION['busqueda_rol']; 
+            $url="index.php?vista=area_search&page="; 
+            $registros=5;
+            $busqueda=$_SESSION['busqueda_area']; 
 
-            /* Paginador piso */
-            require_once "./php/rol_listar.php";
+            /* Paginador area */
+            require_once "./php/area_listar.php";
         } 
     ?>
 </div>

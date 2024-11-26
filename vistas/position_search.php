@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Roles</h1>
-    <h2 class="subtitle">Buscar rol</h2>
+    <h1 class="title">Posiciones</h1>
+    <h2 class="subtitle">Buscar posición</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -12,7 +12,7 @@
             require_once "./php/buscador.php";
         }
 
-        if(!isset($_SESSION['busqueda_rol']) && empty($_SESSION['busqueda_rol'])){
+        if(!isset($_SESSION['busqueda_posicion']) && empty($_SESSION['busqueda_posicion'])){
     ?>
     <div class="columns">
         <div class="column">
@@ -34,9 +34,9 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol"> 
-                <input type="hidden" name="eliminar_buscador" value="rol">
-                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_rol']; ?>”</strong></p>
+                <input type="hidden" name="modulo_buscador" value="posicion"> 
+                <input type="hidden" name="eliminar_buscador" value="posicion">
+                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_posicion']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
             </form>
@@ -53,12 +53,12 @@
             }
 
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=role_search&page="; 
+            $url="index.php?vista=position_search&page="; 
             $registros=10;
-            $busqueda=$_SESSION['busqueda_rol']; 
+            $busqueda=$_SESSION['busqueda_posicion']; 
 
-            /* Paginador piso */
-            require_once "./php/rol_listar.php";
+            /* Paginador posicion */
+            require_once "./php/posicion_listar.php";
         } 
     ?>
 </div>

@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
     <h1 class="title">Estados</h1>
-    <h2 class="subtitle">Lista de roles</h2>
+    <h2 class="subtitle">Lista de estados</h2>
 </div>
 
 <div class="container pb-6 pt-6">  
@@ -19,11 +19,11 @@
         }
 
         $pagina=limpiar_cadena($pagina);
-        $url="index.php?vista=role_list&page=";
+        $url="index.php?vista=statususer_list&page=";
         $registros=3;
         $busqueda="";
 
-        /* Paginador posición */
-        require_once "./php/rol_listar.php";
+        # Paginador usuario #
+        require_once "./php/estadousuario_listar.php";
     ?>
 </div>

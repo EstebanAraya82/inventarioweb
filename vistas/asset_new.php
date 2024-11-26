@@ -126,21 +126,21 @@
 		</div>
         <div class="columns"> 
 	  	<div class="column">
-			<label>Servicio</label><br>
+			<label>Sector</label><br>
 			<div class="select is-rounded">
-				<select name="activo_servicio">
+				<select name="activo_sector">
 					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
-					    $servicios=conexion();
-						$servicios=$servicios->query("SELECT * From servicio");
-						if($servicios->rowCount()>0){
-							$servicios=$servicios->fetchAll();
-							foreach($servicios as $row){
-								echo '<option value="'.$row['servicio_id'].'" >'.$row['servicio_nombre'].'</option>';
+					    $sectores=conexion();
+						$sectores=$sectores->query("SELECT * From sector");
+						if($sectores->rowCount()>0){
+							$sectores=$sectores->fetchAll();
+							foreach($sectores as $row){
+								echo '<option value="'.$row['sector_id'].'" >'.$row['sector_nombre'].'</option>';
 
 							}
 						}
-						$servicios=null;
+						$sectores=null;
 					?>
                     </select>
                     </div>

@@ -55,7 +55,7 @@
 				</div>
             </div>
         </div>      		
-		<div class="file">
+	/*	<div class="file">
   <label class="file-label">
     <input class="file-input" type="file" name="activo_documento" required value="<?php echo $datos['activo_documento']; ?> />
     <span class="file-cta">
@@ -65,7 +65,7 @@
       <span class="file-label"> Cargue el documento… </span>
     </span>
   </label>
-</div>
+</div> */
 		 <div class="columns">
 			 <div class="column">
 		    	<div class="control">

@@ -61,7 +61,7 @@
 					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
 					    $estados=conexion();
-						$estados=$estados->query("SELECT * From estado");
+						$estados=$estados->query("SELECT * From estadousuario");
 						if($estados->rowCount()>0){
 							$estados=$estados->fetchAll();
 							foreach($estados as $row){

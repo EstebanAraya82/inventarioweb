@@ -2,13 +2,11 @@
 
 	require_once "./php/main.php";
 
-    $id = (isset($_GET['user_id_up'])) ? $_GET['user_id_up'] : 0;
+	$id = (isset($_GET['user_id_up'])) ? $_GET['user_id_up'] : 0;
     $id=limpiar_cadena($id);
 ?>
 <div class="container is-fluid mb-6">
 	<?php if($id==$_SESSION['id']){ ?>
-		<h2 class="subtitle">Actualizar datos del usuario</h2>
-	<?php }else{ ?>
 		<h1 class="title">Usuarios</h1>
 		<h2 class="subtitle">Actualizar usuario</h2>
 	<?php } ?>
@@ -81,7 +79,7 @@
 					<option value="" selected="" >Seleccione estado</option>					
 					<?php
 					    $estados=conexion();
-						$estados=$estados->query("SELECT * From rol");
+						$estados=$estados->query("SELECT * From estadousuario");
 						if($estados->rowCount()>0){
 							$estados=$estados->fetchAll();
 							foreach($estados as $row){

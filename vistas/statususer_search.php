@@ -1,6 +1,6 @@
 <div class="container is-fluid mb-6">
-    <h1 class="title">Roles</h1>
-    <h2 class="subtitle">Buscar rol</h2>
+    <h1 class="title">Estados</h1>
+    <h2 class="subtitle">Buscar estado</h2>
 </div>
 
 <div class="container pb-6 pt-6">
@@ -12,12 +12,12 @@
             require_once "./php/buscador.php";
         }
 
-        if(!isset($_SESSION['busqueda_rol']) && empty($_SESSION['busqueda_rol'])){
+        if(!isset($_SESSION['busqueda_estado']) && empty($_SESSION['busqueda_estado'])){
     ?>
     <div class="columns">
         <div class="column">
             <form action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol">   
+                <input type="hidden" name="modulo_buscador" value="usuario">   
                 <div class="field is-grouped">
                     <p class="control is-expanded">
                         <input class="input is-rounded" type="text" name="txt_buscador" placeholder="¿Qué estas buscando?" 
@@ -34,9 +34,9 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol"> 
-                <input type="hidden" name="eliminar_buscador" value="rol">
-                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_rol']; ?>”</strong></p>
+                <input type="hidden" name="modulo_buscador" value="estadousuario"> 
+                <input type="hidden" name="eliminar_buscador" value="estadousuario">
+                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_estado']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
             </form>
@@ -53,12 +53,12 @@
             }
 
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=role_search&page="; 
+            $url="index.php?vista=statususer_search&page="; 
             $registros=10;
-            $busqueda=$_SESSION['busqueda_rol']; 
+            $busqueda=$_SESSION['busqueda_estado']; 
 
-            /* Paginador piso */
-            require_once "./php/rol_listar.php";
+            /* Paginador estado usuario */
+            require_once "./php/estadousuario_listar.php";
         } 
     ?>
 </div>
