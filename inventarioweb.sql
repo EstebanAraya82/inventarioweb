@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2024 a las 02:42:47
+-- Tiempo de generación: 26-11-2024 a las 23:31:24
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -35,9 +35,10 @@ CREATE TABLE `activo` (
   `activo_marca` varchar(50) NOT NULL,
   `activo_modelo` varchar(50) NOT NULL,
   `activo_serial` varchar(50) NOT NULL,
+  `activo_documento` varchar(300) NOT NULL,
   `categoria_id` int(11) NOT NULL,
   `piso_id` int(11) NOT NULL,
-  `posición_id` int(11) NOT NULL,
+  `posicion_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
   `sector_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
@@ -64,24 +65,58 @@ CREATE TABLE `categoria` (
   `categoria_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`categoria_id`, `categoria_nombre`) VALUES
+(1, 'CPU'),
+(2, 'Monitor'),
+(3, 'Notebook'),
+(4, 'Impresora'),
+(5, 'Avaya'),
+(6, 'Pizarra'),
+(7, 'Tablet'),
+(8, 'Webcam');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `estado`
+-- Estructura de tabla para la tabla `estadoactivo`
 --
 
-CREATE TABLE `estado` (
+CREATE TABLE `estadoactivo` (
   `estado_id` int(11) NOT NULL,
   `estado_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `estado`
+-- Volcado de datos para la tabla `estadoactivo`
 --
 
-INSERT INTO `estado` (`estado_id`, `estado_nombre`) VALUES
+INSERT INTO `estadoactivo` (`estado_id`, `estado_nombre`) VALUES
 (1, 'Activo'),
-(2, 'Desactivado'),
+(2, 'Transito'),
+(3, 'Baja');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estadousuario`
+--
+
+CREATE TABLE `estadousuario` (
+  `estado_id` int(11) NOT NULL,
+  `estado_nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `estadousuario`
+--
+
+INSERT INTO `estadousuario` (`estado_id`, `estado_nombre`) VALUES
+(1, 'Habilitado'),
+(2, 'Deshabilitado'),
 (3, 'Baja');
 
 -- --------------------------------------------------------
@@ -94,6 +129,14 @@ CREATE TABLE `piso` (
   `piso_id` int(11) NOT NULL,
   `piso_numero` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `piso`
+--
+
+INSERT INTO `piso` (`piso_id`, `piso_numero`) VALUES
+(1, '-1'),
+(2, '1');
 
 -- --------------------------------------------------------
 
@@ -155,6 +198,13 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`usuario_id`, `usuario_nombre`, `usuario_apellido`, `usuario_usuario`, `usuario_correo`, `usuario_clave`, `estado_id`, `rol_id`) VALUES
+(1, 'Esteban', 'Araya', 'arayapalma.5', 'esteban.araya@teleperformance.com', 'Ma170311*', 1, 1);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -165,7 +215,7 @@ ALTER TABLE `activo`
   ADD PRIMARY KEY (`activo_id`),
   ADD KEY `categoria_id` (`categoria_id`),
   ADD KEY `piso_id` (`piso_id`),
-  ADD KEY `posición_id` (`posición_id`),
+  ADD KEY `posición_id` (`posicion_id`),
   ADD KEY `area_id` (`area_id`),
   ADD KEY `servicio_id` (`sector_id`),
   ADD KEY `sector_id` (`sector_id`);
@@ -183,9 +233,15 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`categoria_id`);
 
 --
--- Indices de la tabla `estado`
+-- Indices de la tabla `estadoactivo`
 --
-ALTER TABLE `estado`
+ALTER TABLE `estadoactivo`
+  ADD PRIMARY KEY (`estado_id`);
+
+--
+-- Indices de la tabla `estadousuario`
+--
+ALTER TABLE `estadousuario`
   ADD PRIMARY KEY (`estado_id`);
 
 --
@@ -240,19 +296,25 @@ ALTER TABLE `area`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `categoria_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoria_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT de la tabla `estado`
+-- AUTO_INCREMENT de la tabla `estadoactivo`
 --
-ALTER TABLE `estado`
+ALTER TABLE `estadoactivo`
+  MODIFY `estado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `estadousuario`
+--
+ALTER TABLE `estadousuario`
   MODIFY `estado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `piso`
 --
 ALTER TABLE `piso`
-  MODIFY `piso_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `piso_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `posicion`
@@ -276,7 +338,7 @@ ALTER TABLE `sector`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
