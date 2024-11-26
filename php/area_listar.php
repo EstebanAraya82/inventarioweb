@@ -4,15 +4,15 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM area WHERE area_nombre LIKE '%$busqueda%' ORDER BY area_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ";
+		$consulta_total="SELECT COUNT(area_id) FROM area WHERE area_nombre LIKE '%$busqueda%' ";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM categoria ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM area ORDER BY area_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria";
+		$consulta_total="SELECT COUNT(area_id) FROM area";
 		
 	}
 
@@ -32,7 +32,7 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Categoria</th>
+                    <th>Área</th>
                     <th colspan="2">Opciones</th>
                     </tr>
             </thead>
@@ -46,12 +46,12 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['categoria_nombre'].'</td>
+                    <td>'.$rows['area_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_list&category_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
+                        <a href="index.php?vista=area_new&area_id='.$rows['area_id'].'" class="button is-link is-rounded is-small">Ver áreas</a>
                     </td>
                     <td>
-                        <a href="index.php?vista=category_update&category_id_up='.$rows['categoria_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=area_update&area_id_up='.$rows['area_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     </tr>
             ';
@@ -84,7 +84,7 @@
 	$tabla.='</tbody></table></div>';
 
 	if($total>0 && $pagina<=$Npaginas){
-		$tabla.='<p class="has-text-right">Mostrando categorías <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
+		$tabla.='<p class="has-text-right">Mostrando áreas <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
 	}
 
 	$conexion=null;

@@ -4,17 +4,17 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadoactivo WHERE estado_nombre LIKE '%$busqueda%' ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ";
+		$consulta_total="SELECT COUNT(estado_id) FROM estadoactivo WHERE estado_nombre LIKE '%$busqueda%'";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM categoria ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadoactivo ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria";
+		$consulta_total="SELECT COUNT(estado_id) FROM estadoactivo";
 		
-	}
+	} 
 
 	$conexion=conexion();
 
@@ -32,8 +32,7 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Categoria</th>
-                    <th colspan="2">Opciones</th>
+                    <th>Estado</th>
                     </tr>
             </thead>
             <tbody>
@@ -46,12 +45,12 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['categoria_nombre'].'</td>
+                    <td>'.$rows['estado_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_list&category_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
+                        <a href="index.php?vista=asset_statusasset&statusasset_id='.$rows['estado_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
                     </td>
                     <td>
-                        <a href="index.php?vista=category_update&category_id_up='.$rows['categoria_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=statusasset_update&statusasset_id_up='.$rows['estado_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     </tr>
             ';
@@ -62,7 +61,7 @@
 		if($total>=1){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="5">
+					<td colspan="7">
 						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
 							Haga clic acá para recargar el listado
 						</a>
@@ -72,7 +71,7 @@
 		}else{
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="5">
+					<td colspan="7">
 						No hay registros en el sistema
 					</td>
 				</tr>
@@ -84,7 +83,7 @@
 	$tabla.='</tbody></table></div>';
 
 	if($total>0 && $pagina<=$Npaginas){
-		$tabla.='<p class="has-text-right">Mostrando categorías <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
+		$tabla.='<p class="has-text-right">Mostrando estados <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
 	}
 
 	$conexion=null;

@@ -12,12 +12,12 @@ $categoria=limpiar_cadena($_POST['activo_categoria']);
 $piso=limpiar_cadena($_POST['activo_piso']);
 $posicion=limpiar_cadena($_POST['activo_posicion']);
 $area=limpiar_cadena($_POST['activo_area']);
-$servicio=limpiar_cadena($_POST['activo_servicio']);
+$sector=limpiar_cadena($_POST['activo_sector']);
 
 
 /* Verificación de datos obligatorios */
 if($codigo=="" || $marca=="" || $modelo=="" || $serial=="" || $categoria=="" || $piso=="" ||
- $posicion=="" || $area=="" || $servicio==""){
+ $posicion=="" || $area=="" || $sector==""){
     echo '
     <div class="notification is-danger is-light">
   <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -154,27 +154,27 @@ if($check_area->rowCount()<=0){
 }
 $check_area=null;
 
-/*verificar servicio */
-$check_servicio=conexion();
-$check_servicio=$check_servicio->query("SELECT servicio_id From servicio where servicio_id='$servicio'");
-if($check_servicio->rowCount()<=0){
+/*verificar sector */
+$check_sector=conexion();
+$check_sector=$check_sector->query("SELECT sector_id From sector where _id='$sector'");
+if($check_sector->rowCount()<=0){
   echo'
   <div class="notification is-danger is-light">
   <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-  El áservicio no existe
+  El sector no existe
   </div>
   ';
   exit();
 
 }
-$check_servicio=null;
+$check_sector=null;
 
       
   	/* Guardando datos */
     $guardar_activo
     =conexion();
     $guardar_activo=$guardar_activo->prepare("INSERT INTO activo (activo_codigo	,activo_marca,activo_modelo,activo_serial,
-    categoria_id ,piso_id ,posición_id ,area_id ,servicio_id ) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posision,:area,:servicio)");
+    categoria_id ,piso_id ,posición_id ,area_id ,sector_id ) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posision,:area,:sector)");
 
     $marcadores=[
         ":codigo"=>$codigo,
@@ -185,7 +185,7 @@ $check_servicio=null;
         ":piso"=>$piso,
         ":posicion"=>$posicion,
         ":area"=>$area,
-        ":servicio"=>$servicio
+        ":sector"=>$sector
 
     ];
 

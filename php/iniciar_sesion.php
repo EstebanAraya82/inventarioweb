@@ -8,7 +8,7 @@
     if($usuario=="" || $clave==""){
         echo '
             <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrio un error inesperado!</strong><br>
                 No has llenado todos los campos que son obligatorios
             </div>
         ';
@@ -20,7 +20,7 @@
     if(verificar_datos("[a-zA-Z0-9@.]{4,50}",$usuario)){
         echo '
             <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrio un error inesperado!</strong><br>
                 El USUARIO no coincide con el formato solicitado
             </div>
         ';
@@ -30,7 +30,7 @@
     if(verificar_datos("[a-zA-Z0-9$@.-*]{7,50}",$clave)){
         echo '
             <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrio un error inesperado!</strong><br>
                 Las CLAVE no coinciden con el formato solicitado
             </div>
         ';
@@ -60,7 +60,7 @@
     	}else{
     		echo '
 	            <div class="notification is-danger is-light">
-	                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+	                <strong>¡Ocurrio un error inesperado!</strong><br>
 	                Usuario o clave incorrectos
 	            </div>
 	        ';
@@ -68,7 +68,7 @@
     }else{
     	echo '
             <div class="notification is-danger is-light">
-                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                <strong>¡Ocurrio un error inesperado!</strong><br>
                 Usuario o clave incorrectos
             </div>
         ';

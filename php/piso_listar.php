@@ -1,19 +1,18 @@
 <?php
-	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
+$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM piso WHERE piso_numero LIKE '%$busqueda%' ORDER BY piso_numero ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria WHERE categoria_nombre LIKE '%$busqueda%' ";
+		$consulta_total="SELECT COUNT(piso_id) FROM piso WHERE piso_numero LIKE '%$busqueda%'";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM categoria ORDER BY categoria_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM piso ORDER BY piso_numero ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(categoria_id) FROM categoria";
-		
+		$consulta_total="SELECT COUNT(piso_id) FROM piso";
 	}
 
 	$conexion=conexion();
@@ -32,8 +31,8 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Categoria</th>
-                    <th colspan="2">Opciones</th>
+                    <th>Piso</th>
+					<th colspan="2">Opciones</th>
                     </tr>
             </thead>
             <tbody>
@@ -46,12 +45,9 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['categoria_nombre'].'</td>
+                    <td>'.$rows['piso_numero'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_list&category_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
-                    </td>
-                    <td>
-                        <a href="index.php?vista=category_update&category_id_up='.$rows['categoria_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=floor_update&piso_id='.$rows['piso_id'].'" class="button is-link is-rounded is-small">Ver Pisos</a>
                     </td>
                     </tr>
             ';
@@ -62,7 +58,7 @@
 		if($total>=1){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="5">
+					<td colspan="7">
 						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
 							Haga clic acá para recargar el listado
 						</a>
@@ -72,7 +68,7 @@
 		}else{
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="5">
+					<td colspan="7">
 						No hay registros en el sistema
 					</td>
 				</tr>
@@ -84,7 +80,7 @@
 	$tabla.='</tbody></table></div>';
 
 	if($total>0 && $pagina<=$Npaginas){
-		$tabla.='<p class="has-text-right">Mostrando categorías <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
+		$tabla.='<p class="has-text-right">Mostrando roles <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
 	}
 
 	$conexion=null;

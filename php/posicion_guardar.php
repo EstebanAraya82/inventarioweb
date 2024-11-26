@@ -2,10 +2,10 @@
 	require_once "main.php";
 
     /*== Almacenando datos ==*/
-    $nombre=limpiar_cadena($_POST['categoria_nombre']);
+    $posicion=limpiar_cadena($_POST['posicion_posicion']);
 
     /* Verificando campos obligatorios */
-    if($nombre==""){
+    if($posicion==""){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -17,46 +17,46 @@
 
 
     /*== Verificando integridad de los datos ==*/
-    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}",$nombre)){
+    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}",$posicion)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                El NOMBRE no coincide con el formato solicitado
+                La posición no coincide con el formato solicitado
             </div>
         ';
         exit();
     }
 
-    /* Verificando nombre */
-    $check_nombre=conexion();
-    $check_nombre=$check_nombre->query("SELECT categoria_nombre FROM categoria WHERE categoria_nombre='$nombre'");
-    if($check_nombre->rowCount()>0){
+    /* Verificando posición */
+    $check_posicion=conexion();
+    $check_posicion=$check_posicion->query("SELECT posicion_posicion FROM posicion WHERE posicion='$posicion'");
+    if($check_posicion->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                La categoria ingresada ya se encuentra registrada, por favor elija otra
+                La posicion ingresada ya se encuentra registrada, por favor elija otra
             </div>
         ';
         exit();
     }
-    $check_nombre=null;
+    $check_posicion=null;
 
 
     /* Guardando datos */
-    $guardar_categoria=conexion();
-    $guardar_categoria=$guardar_categoria->prepare("INSERT INTO categoria (categoria_nombre) VALUES(:nombre)");
+    $guardar_posicion=conexion();
+    $guardar_posicion=$guardar_posicion->prepare("INSERT INTO posicion (posicion_posicion) VALUES(:posicion)");
 
     $marcadores=[
-        ":nombre"=>$nombre,
+        ":posicion"=>$posicion,
     ];
 
-    $guardar_categoria->execute($marcadores);
+    $guardar_posicion->execute($marcadores);
 
-    if($guardar_categoria->rowCount()==1){
+    if($guardar_posicion->rowCount()==1){
         echo '
             <div class="notification is-info is-light">
                 <strong>¡Categoria registrada exitosamente!</strong><br>
-                La categoría se registro con exito
+                La posición se registro con exito
             </div>
         ';
     }else{
@@ -67,4 +67,4 @@
             </div>
         ';
     }
-    $guardar_categoria=null;
+    $guardar_posicion=null;

@@ -112,17 +112,17 @@
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                Las contraseñas que ha ingresado no coinciden
+                Las CLAVES que ha ingresado no coinciden
             </div>
         ';
         exit();
     }else{
-        $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>7]);
+        $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>10]);
     }
 
       /* verificar estado */
       $check_estado=conexion();
-      $check_estado=$check_estado->query("SELECT estado_id FROM estado WHERE estado_id='$estado'");
+      $check_estado=$check_estado->query("SELECT estado_id FROM estadousuario WHERE estado_id='$estado'");
       if($check_estado->rowCount()<=0){
           echo'
           <div class="notification is-danger is-light">
