@@ -20,24 +20,9 @@
                     <a class="navbar-item" href="index.php?vista=user_new"> Nuevo</a>
                     <a class="navbar-item" href="index.php?vista=user_list">Lista</a>
                     <a class="navbar-item" href="index.php?vista=user_search">Buscar</a>
-                   </div>               
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Estados</a>    
-               <div class="navbar-dropdown">
-                    <a class="navbar-item" href="index.php?vista=status_new"> Nuevo</a>
-                    <a class="navbar-item" href="index.php?vista=status_list">Lista</a>
-                    <a class="navbar-item" href="index.php?vista=status_search">Buscar</a>
-                   </div>               
-            </div>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Roles</a>    
-               <div class="navbar-dropdown">
-                    <a class="navbar-item" href="index.php?vista=role_new"> Nuevo</a>
-                    <a class="navbar-item" href="index.php?vista=role_list">Lista</a>
-                    <a class="navbar-item" href="index.php?vista=role_search">Buscar</a>
+                    <a class="navbar-item" href="index.php?vista=statususer_list">Estado</a>
+                    <a class="navbar-item" href="index.php?vista=role_list">Rol</a>
+                    
                    </div>               
             </div>
 
@@ -47,16 +32,11 @@
                     <a class="navbar-item" href="index.php?vista=asset_new"> Nuevo</a>
                     <a class="navbar-item" href="index.php?vista=asset_list">Lista</a>
                     <a class="navbar-item" href="index.php?vista=asset_search">Buscar</a>
+                    <a class="navbar-item" href="index.php?vista=statusasset_list">Estado</a>
+                    <a class="navbar-item" href="index.php?vista=category_list">Categoria</a>
                    </div>               
             </div>    
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">Categorias</a>    
-               <div class="navbar-dropdown">
-                    <a class="navbar-item" href="index.php?vista=category_new"> Nuevo</a>
-                    <a class="navbar-item" href="index.php?vista=category_list">Lista</a>
-                    <a class="navbar-item" href="index.php?vista=category_search">Buscar</a>
-                   </div>               
-            </div>    
+             
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">Piso</a>    
                <div class="navbar-dropdown">
