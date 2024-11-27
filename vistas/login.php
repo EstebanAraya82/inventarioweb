@@ -13,7 +13,7 @@
 		<div class="field">
 		  	<label class="label">Clave</label>
 		  	<div class="control">
-		    	<input class="input" type="password" name="login_clave" placeholder="Ingrese su clave" pattern="[a-zA-Z0-9$@.-*]{7,50}" maxlength="50" required >
+		    	<input class="input" type="password" name="login_clave" placeholder="Ingrese su clave" pattern="[a-zA-Z0-9$@.-]{7,50}" maxlength="50" required >
 		  	</div>
 		</div>
 
