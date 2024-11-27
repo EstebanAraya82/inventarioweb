@@ -189,7 +189,7 @@ $check_estado=null;
   	/* Guardando datos */
     $guardar_activo=conexion();
     $guardar_activo=$guardar_activo->prepare("INSERT INTO activo (activo_codigo,activo_marca,activo_modelo,activo_serial,
-    categoria_id,piso_id,posicion_id,area_id,sector_id,estado_id) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posision,:area,:sector,:estado)");
+    categoria_id,piso_id,posicion_id,area_id,sector_id,estado_id) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posicion,:area,:sector,:estado)");
 
     $marcadores=[
         ":codigo"=>$codigo,

@@ -1,12 +1,21 @@
 <?php
 	$modulo_buscador=limpiar_cadena($_POST['modulo_buscador']);
 
-	$modulos=["usuario"];
+	$modulos=["usuario","estadousuario","rol","activo","estadoactivo","categoria","piso","posicion","area","sector"];
 
 	if(in_array($modulo_buscador, $modulos)){
 		
 		$modulos_url=[
-			"usuario"=>"usuario_buscar",
+			"usuario"=>"user_search",
+			"estadousuario"=>"statususer_search",
+			"rol"=>"role_search",
+			"activo"=>"asset_search",
+			"estadoactivo"=>"statusasset_search",
+			"categoria"=>"category_search",
+			"piso"=>"floor_search",
+			"posicion"=>"position_search",
+			"area"=>"area_search",
+			"sector"=>"sector_search"
 			
 		];
 
