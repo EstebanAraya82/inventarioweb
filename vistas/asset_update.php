@@ -23,38 +23,41 @@
 	
 	<h2 class="title has-text-centered"><?php echo $datos['activo_codigo']; ?></h2>
 
-	<form action="./php/equipo_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
+	<form action="./php/activo_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
-		<input type="hidden" name="id_equipo" value="<?php echo $datos['id_equipo']; ?>" required >
+		<input type="hidden" name="activo_id" value="<?php echo $datos['activo_id']; ?>" required >
 
 		<div class="columns">
 		  	<div class="column">
 		    	<div class="control">
 					<label>Activo Fijo</label>
-				  	<input class="input" type="text" name="equipo_activo" pattern="[0-9 ]{3,10}" maxlength="10" required value="<?php echo $datos['equipo_activo']; ?>">
+				  	<input class="input" type="text" name="activo_codigo" placeholder="Ingrese dato" pattern="[0-9]{3,50}" maxlength="50" require value="<?php echo $datos['activo_codigo']; ?>">
 				</div>
 		  	</div>
+				</div>
+		  	</div>
+		<div class="column">
+		    	<div class="control">
+					<label>Marca</label>
+				  	<input class="input" type="int" name="activo_marca" placeholder="Ingrese dato" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,50}" maxlength="50" required value="<?php echo $datos['activo_marca']; ?>">
+				</div>
+                </div>	
+                </div>
+                <div class="columns">
               <div class="column">
 		    	<div class="control">
-					<label>Sector</label>
-				  	<input class="input" type="text" name="equipo_sector" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" maxlength="40" required value="<?php echo $datos['equipo_sector']; ?> ">
+					<label>Modelo</label>
+				  	<input class="input" type="text" name="activo_modelo" placeholder="Ingrese dato" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{2,50}" maxlength="50" required value="<?php echo $datos['activo_modelo']; ?>">
 				</div>
 		  	</div>
-        </div>              
-              <div class="columns">
-             	<div class="column">
+		     <div class="column">
 		    	<div class="control">
-					<label>Piso</label>
-				  	<input class="input" type="text" name="equipo_piso" pattern="[a-zA-Z0-9 ]{1,20}" maxlength="20" required value="<?php echo $datos['equipo_piso']; ?>" >
+					<label>Serial</label>
+				  	<input class="input" type="text" name="activo_serial" placeholder="Ingrese dato" pattern="[a-zA-Z0-9]{3,50}" maxlength="50" required value="<?php echo $datos['activo_serial']; ?>">
 				</div>
-		  	</div>
-               	<div class="column">
-		    	<div class="control">
-					<label>Ubicación</label>
-				  	<input class="input" type="text" name="equipo_ubicacion" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ().,$#\-\/ ]{2,40}" maxlength="40" required value="<?php echo $datos['equipo_ubicacion']; ?> ">
-				</div>
-            </div>
-        </div>      		
+		</div>   
+        </div>
+
 	/*	<div class="file">
   <label class="file-label">
     <input class="file-input" type="file" name="activo_documento" required value="<?php echo $datos['activo_documento']; ?> />
@@ -66,36 +69,160 @@
     </span>
   </label>
 </div> */
-		 <div class="columns">
-			 <div class="column">
-		    	<div class="control">
-					<label>Responsable</label>
-				  	<input class="input" type="text" name="equipo_responsable" pattern="[a-zA-Z0-9 ]{2,100}" maxlength="100" required value="<?php echo $datos['equipo_responsable']; ?> ">
-				</div>
-		  	</div>
-		  	<div class="column">
-				<label>Categoría</label><br>
-		    	<div class="select is-rounded">
-				  	<select name="equipo_categoria" >
-				    	<?php
-    						$categorias=conexion();
-    						$categorias=$categorias->query("SELECT * FROM categoria");
-    						if($categorias->rowCount()>0){
-    							$categorias=$categorias->fetchAll();
-    							foreach($categorias as $row){
-    								if($datos['id_categoria']==$row['id_categoria']){
-    									echo '<option value="'.$row['id_categoria'].'" selected="" >'.$row['nombre_categoria'].' </option>';
+<div class="columns"> 
+	  	<div class="column">
+			<label>Categoria</label><br>
+			<div class="select is-rounded">
+				<select name="activo_categoria">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $categorias=conexion();
+						$categorias=$categorias->query("SELECT * From categoria");
+						if($categorias->rowCount()>0){
+							$categorias=$categorias->fetchAll();
+							foreach($categorias as $row){
+								if($datos['categoria_id']==$row['categoria_id']){
+									echo '<option value="'.$row['categoria_id'].'" selected="" >'.$row['categoria_nombre'].' (Actual)</option>';
     								}else{
-    									echo '<option value="'.$row['id_categoria'].'" >'.$row['nombre_categoria'].'</option>';
+    									echo '<option value="'.$row['categoria_id'].'" >'.$row['categoria_nombre'].'</option>';
     								}
 				    			}
-				   			}
-				   			$categorias=null;
-				    	?>
-				  	</select>
-				</div>
-		  	</div>
+							}
+				   			
+						$categorias=null;
+					?>
+                    </select>
+                    </div>
+                    </div>
+                    <div class="column">
+			<label>Piso</label><br>
+			<div class="select is-rounded">
+				<select name="activo_piso">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $pisos=conexion();
+						$pisos=$pisos->query("SELECT * From piso");
+						if($pisos->rowCount()>0){
+							$pisos=$pisos->fetchAll();
+							foreach($pisos as $row){
+								if($datos['piso_id']==$row['piso_id']){
+								echo '<option value="'.$row['piso_id'].'" >'.$row['piso_numero'].'(Actual)</option>';
+
+						}else{
+    									echo '<option value="'.$row['piso_id'].'" >'.$row['piso_numero'].'</option>';
+    								}
+				    			}
+							}
+				   			
+						$pisos=null;
+					?>
+                    </select>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="columns"> 
+                     <div class="column">
+			<label>Posición</label><br>
+			<div class="select is-rounded">
+				<select name="activo_posicion">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $posiciones=conexion();
+						$posiciones=$posiciones->query("SELECT * From posicion");
+						if($posiciones->rowCount()>0){
+							$posiciones=$posiciones->fetchAll();
+							foreach($posiciones as $row){
+								if($datos['posicion_id']==$row['posicion_id']){
+								echo '<option value="'.$row['posicion_id'].'" >'.$row['posicion_posicion'].'(Actual)</option>';
+
+						}else{
+    									echo '<option value="'.$row['posicion_id'].'" >'.$row['posicion_posicion'].'</option>';
+    								}
+				    			}
+							}
+				   			
+						$posiciones=null;
+					?>
+                    </select>
+                    	</div>
+                   	 </div>
+                     <div class="column">
+			<label>Area</label><br>
+			<div class="select is-rounded">
+				<select name="activo_area">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $areas=conexion();
+						$areas=$areas->query("SELECT * From area");
+						if($areas->rowCount()>0){
+							$areas=$areas->fetchAll();
+							foreach($areas as $row){
+								if($datos['area_id']==$row['area_id']){
+								echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'(Actual)</option>';
+						}else{
+    									echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'</option>';
+    								}
+				    		}
+						}
+				   			
+						$areas=null;
+					?>
+                      
+				</select>
+			</div>
 		</div>
+		</div>
+        <div class="columns"> 
+	  	<div class="column">
+			<label>Sector</label><br>
+			<div class="select is-rounded">
+				<select name="activo_sector">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $sectores=conexion();
+						$sectores=$sectores->query("SELECT * From sector");
+						if($sectores->rowCount()>0){
+							$sectores=$sectores->fetchAll();
+							foreach($sectores as $row){
+								if($datos['sector_id']==$row['sector_id']){
+								echo '<option value="'.$row['sector_id'].'" >'.$row['sector_nombre'].'(Actual)</option>';
+						}else{
+    									echo '<option value="'.$row['sector_id'].'" >'.$row['sector_nombre'].'</option>';
+    								}
+				    			}
+							}
+				   			
+						$sectores=null;
+					?>
+                    </select>
+                    </div>
+                    </div>
+					<div class="column">
+			<label>Categoria</label><br>
+			<div class="select is-rounded">
+				<select name="activo_estado">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $categorias=conexion();
+						$categorias=$categorias->query("SELECT * From estadoactivo");
+						if($categorias->rowCount()>0){
+							$categorias=$categorias->fetchAll();
+							foreach($categorias as $row){
+								if($datos['estado_id']==$row['estado_id']){
+								echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'(Actual)</option>';
+
+						}else{
+    									echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'</option>';
+    								}
+				    			}
+							}
+				   			
+						$categorias=null;
+					?>
+                    </select>
+                    </div>
+                    </div>
+					</div>
 		<p class="has-text-centered">
 			<button type="submit" class="button is-success is-rounded">Actualizar</button>
 		</p>
@@ -104,6 +231,6 @@
 		}else{
 			include "./inc/alerta_error.php";
 		}
-		$check_equipo=null;
+		$check_activo=null;
 	?>
 </div>

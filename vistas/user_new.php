@@ -43,13 +43,13 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Clave</label>
-				  	<input class="input" type="password" name="usuario_clave_1" placeholder="Ingrese clave" pattern="[a-zA-Z0-9$@.-*]{7,50}" maxlength="50" required >
+				  	<input class="input" type="password" name="usuario_clave_1" placeholder="Ingrese clave" pattern="[a-zA-Z0-9$@.-]{7,50}" maxlength="50" required >
 				</div>
 		  	</div>             
            	<div class="column">
 		    	<div class="control">
 					<label>Repetir clave</label>
-				  	<input class="input" type="password" name="usuario_clave_2" placeholder="Ingrese clave" pattern="[a-zA-Z0-9$@.-*]{7,50}" maxlength="50" required >
+				  	<input class="input" type="password" name="usuario_clave_2" placeholder="Ingrese clave" pattern="[a-zA-Z0-9$@.-]{7,50}" maxlength="50" required >
 				</div>
 		  	</div>           
               </div>    

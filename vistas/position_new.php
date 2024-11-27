@@ -11,8 +11,8 @@
 		<div class="columns">
 		  	<div class="column">
 		    	<div class="control">
-					<label>Nombre</label>
-				  	<input class="input" type="text" name="posicion_posicion" placeholder="Ingrese el número de la posición" placeholder="Ingrese dato" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
+					<label>Posición</label>
+				  	<input class="input" type="text" name="posicion_posicion" placeholder="Ingrese el número de la posición" placeholder="Ingrese dato" pattern="[a-zA-Z0-9-]{2,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		</div>

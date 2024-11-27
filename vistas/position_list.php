@@ -23,7 +23,7 @@
         $registros=3;
         $busqueda="";
 
-        /* Paginador rol */
+        /* Paginador posicion */
         require_once "./php/posicion_listar.php";
     ?>
 </div>

@@ -29,7 +29,7 @@
               <div class="column">
 		    	<div class="control">
 					<label>Modelo</label>
-				  	<input class="input" type="text" name="activo_modelo" placeholder="Ingrese dato" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,50}" maxlength="50" required >
+				  	<input class="input" type="text" name="activo_modelo" placeholder="Ingrese dato" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{2,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		     <div class="column">
@@ -145,6 +145,27 @@
                     </select>
                     </div>
                     </div>
+					<div class="column">
+			<label>Estado</label><br>
+			<div class="select is-rounded">
+				<select name="activo_estado">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $estados=conexion();
+						$estados=$estados->query("SELECT * From estadoactivo");
+						if($estados->rowCount()>0){
+							$estados=$estados->fetchAll();
+							foreach($estados as $row){
+								echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'</option>';
+
+							}
+						}
+						$estados=null;
+					?>
+                    </select>
+                    </div>
+                    </div>
+					</div>
 		<p class="has-text-centered">
 			<button type="submit" class="button is-info is-rounded">Guardar</button>
 		</p>

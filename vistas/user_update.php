@@ -26,7 +26,8 @@
 	?>
 
 	<div class="form-rest mb-6 mt-6"></div>
-
+3
+.
 	<form action="./php/usuario_actualizar.php" method="POST" class="FormularioAjax" autocomplete="off" >
 
 		<input type="hidden" name="usuario_id" value="<?php echo $datos['usuario_id']; ?>" required >
@@ -62,13 +63,13 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Repetir clave</label>
-				  	<input class="input" type="password" name="usuario_clave_1" placeholder="ingrese clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+				  	<input class="input" type="password" name="usuario_clave_1" placeholder="ingrese clave" pattern="[a-zA-Z0-9$@.-]{7,50}" maxlength="50" required >
 				</div>
 		  	</div>              
               <div class="column">
 		    	<div class="control">
 					<label>Repetir clave</label>
-					<input class="input" type="password" name="usuario_clave_2" placeholder="Repita clave" pattern="[a-zA-Z0-9$@.-]{7,100}" maxlength="100" required >
+					<input class="input" type="password" name="usuario_clave_2" placeholder="Repita clave" pattern="[a-zA-Z0-9$@.-]{7,50}" maxlength="50" required >
 		      </div>
               </div>
               </div>
