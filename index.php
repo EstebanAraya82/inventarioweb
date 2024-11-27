@@ -1,8 +1,11 @@
-<?php require "./inc/session_start.php"; ?>
+<?php
+ob_start(); 
+require "./inc/session_start.php";
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<?php include "./inc/head.php"; ?>
+<?php include "./inc/head.php";?>
 </head>
 <body>
     <?php 
@@ -26,6 +29,7 @@ if(is_file("./vistas/".$_GET['vista'].".php") && $_GET['vista']!="login" && $_GE
     }
 }   
 
-     ?>
+ob_end_flush();
+?>
 </body>
 </html>
