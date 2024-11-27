@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2024 a las 23:31:24
+-- Tiempo de generación: 27-11-2024 a las 03:10:08
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -40,7 +40,8 @@ CREATE TABLE `activo` (
   `piso_id` int(11) NOT NULL,
   `posicion_id` int(11) NOT NULL,
   `area_id` int(11) NOT NULL,
-  `sector_id` int(11) NOT NULL
+  `sector_id` int(11) NOT NULL,
+  `estado_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 -- --------------------------------------------------------
@@ -53,6 +54,13 @@ CREATE TABLE `area` (
   `area_id` int(11) NOT NULL,
   `area_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `area`
+--
+
+INSERT INTO `area` (`area_id`, `area_nombre`) VALUES
+(1, 'Soporte');
 
 -- --------------------------------------------------------
 
@@ -149,6 +157,13 @@ CREATE TABLE `posicion` (
   `posicion_posicion` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `posicion`
+--
+
+INSERT INTO `posicion` (`posicion_id`, `posicion_posicion`) VALUES
+(1, 'N-A');
+
 -- --------------------------------------------------------
 
 --
@@ -180,6 +195,13 @@ CREATE TABLE `sector` (
   `sector_nombre` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `sector`
+--
+
+INSERT INTO `sector` (`sector_id`, `sector_nombre`) VALUES
+(1, 'Bodega');
+
 -- --------------------------------------------------------
 
 --
@@ -202,7 +224,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usuario_id`, `usuario_nombre`, `usuario_apellido`, `usuario_usuario`, `usuario_correo`, `usuario_clave`, `estado_id`, `rol_id`) VALUES
-(1, 'Esteban', 'Araya', 'arayapalma.5', 'esteban.araya@teleperformance.com', 'Ma170311*', 1, 1);
+(1, 'Esteban', 'Araya', 'arayapalma.5', 'esteban.araya@teleperformance.com', 'Ma170311*', 1, 1),
+(2, 'Susana Paz', 'Valenzuela Milla', 'valenzuelamilla.5@nlsa.teleperformance.com', 'susana.valenzuela@teleperformance.cl', '$2y$10$v0nR0Fk3OKqMKDcTKMFO.OmbpFu.uXWnpQt5RkG68Qy', 1, 2);
 
 --
 -- Índices para tablas volcadas
@@ -215,10 +238,10 @@ ALTER TABLE `activo`
   ADD PRIMARY KEY (`activo_id`),
   ADD KEY `categoria_id` (`categoria_id`),
   ADD KEY `piso_id` (`piso_id`),
-  ADD KEY `posición_id` (`posicion_id`),
   ADD KEY `area_id` (`area_id`),
-  ADD KEY `servicio_id` (`sector_id`),
-  ADD KEY `sector_id` (`sector_id`);
+  ADD KEY `sector_id` (`sector_id`),
+  ADD KEY `posicion_id` (`posicion_id`) USING BTREE,
+  ADD KEY `estado_id` (`estado_id`);
 
 --
 -- Indices de la tabla `area`
@@ -290,7 +313,7 @@ ALTER TABLE `activo`
 -- AUTO_INCREMENT de la tabla `area`
 --
 ALTER TABLE `area`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -320,7 +343,7 @@ ALTER TABLE `piso`
 -- AUTO_INCREMENT de la tabla `posicion`
 --
 ALTER TABLE `posicion`
-  MODIFY `posicion_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `posicion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -332,13 +355,35 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `sector`
 --
 ALTER TABLE `sector`
-  MODIFY `sector_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sector_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `activo`
+--
+ALTER TABLE `activo`
+  ADD CONSTRAINT `activo_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`categoria_id`),
+  ADD CONSTRAINT `activo_ibfk_2` FOREIGN KEY (`area_id`) REFERENCES `area` (`area_id`),
+  ADD CONSTRAINT `activo_ibfk_3` FOREIGN KEY (`posicion_id`) REFERENCES `posicion` (`posicion_id`),
+  ADD CONSTRAINT `activo_ibfk_4` FOREIGN KEY (`piso_id`) REFERENCES `piso` (`piso_id`),
+  ADD CONSTRAINT `activo_ibfk_5` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`sector_id`),
+  ADD CONSTRAINT `activo_ibfk_6` FOREIGN KEY (`estado_id`) REFERENCES `estadoactivo` (`estado_id`);
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `rol` (`rol_id`),
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`estado_id`) REFERENCES `estadousuario` (`estado_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
