@@ -56,7 +56,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-*]{7,50}",$clave_1) || verificar_datos("[a-zA-Z0-9$@.-*]{7,50}",$clave_2)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{7,50}",$clave_1) || verificar_datos("[a-zA-Z0-9$@.-]{7,50}",$clave_2)){
         echo '
             <div class="notification is-danger is-light">
                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -150,7 +150,7 @@
 
     /* Guardando datos */
     $guardar_usuario=conexion();
-    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario (usuario_nombre,usuario_apellido,usuario_usuario,usuario_corrreo,
+    $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario (usuario_nombre,usuario_apellido,usuario_usuario,usuario_correo,
     usuario_clave,estado_id,rol_id) VALUES(:nombre,:apellido,:usuario,:correo,:clave,:estado,:rol)");
 
     $marcadores=[

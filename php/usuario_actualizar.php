@@ -52,7 +52,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-*]{7,50}",$admin_clave)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{7,50}",$admin_clave)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -99,7 +99,8 @@
     $clave_1=limpiar_cadena($_POST['usuario_clave_1']);
     $clave_2=limpiar_cadena($_POST['usuario_clave_2']);
     $estado=limpiar_cadena($_POST['estado_nombre']);
-    $rol=limpiar_cadena($_POST['rol_nombre'])
+    $rol=limpiar_cadena($_POST['rol_nombre']);
+
 
 
     /* Verificando campos obligatorios del usuario */

@@ -47,7 +47,7 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['estado_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_statusasset&statusasset_id='.$rows['estado_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
+                        <a href="index.php?vista=asset_list&estado_id='.$rows['estado_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
                     </td>
                     <td>
                         <a href="index.php?vista=statusasset_update&statusasset_id_up='.$rows['estado_id'].'" class="button is-success is-rounded is-small">Actualizar</a>

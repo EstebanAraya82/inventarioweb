@@ -17,7 +17,7 @@
 
 
     /*== Verificando integridad de los datos ==*/
-    if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}",$posicion)){
+    if(verificar_datos("[a-zA-Z0-9-]{2,50}",$posicion)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -29,7 +29,7 @@
 
     /* Verificando posición */
     $check_posicion=conexion();
-    $check_posicion=$check_posicion->query("SELECT posicion_posicion FROM posicion WHERE posicion='$posicion'");
+    $check_posicion=$check_posicion->query("SELECT posicion_posicion FROM posicion WHERE posicion_posicion='$posicion'");
     if($check_posicion->rowCount()>0){
         echo '
             <div class="notification is-danger is-light">

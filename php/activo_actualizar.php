@@ -71,7 +71,7 @@
             exit();
         }
 
-        if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,50}", $modelo)){
+        if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{2,50}", $modelo)){
             echo '
                 <div class="notification is-danger is-light">
                     <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>

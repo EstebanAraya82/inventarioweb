@@ -27,7 +27,7 @@
         exit();
     }
 
-    if(verificar_datos("[a-zA-Z0-9$@.-*]{7,50}",$clave)){
+    if(verificar_datos("[a-zA-Z0-9$@.-]{7,50}",$clave)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>

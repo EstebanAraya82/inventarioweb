@@ -1,6 +1,6 @@
 <?php
 
-require_once "../inc/inicio_sesion.php";
+/*require_once "../inc/inicio_sesion.php";*/
 require_once "../php/main.php";
 
 /* Almacenamiento de datos */
@@ -13,11 +13,12 @@ $piso=limpiar_cadena($_POST['activo_piso']);
 $posicion=limpiar_cadena($_POST['activo_posicion']);
 $area=limpiar_cadena($_POST['activo_area']);
 $sector=limpiar_cadena($_POST['activo_sector']);
+$estado=limpiar_cadena($_POST['activo_estado']);
 
 
 /* Verificación de datos obligatorios */
 if($codigo=="" || $marca=="" || $modelo=="" || $serial=="" || $categoria=="" || $piso=="" ||
- $posicion=="" || $area=="" || $sector==""){
+ $posicion=="" || $area=="" || $sector=="" || $estado==""){
     echo '
     <div class="notification is-danger is-light">
   <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -45,7 +46,7 @@ if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}", $marca)){
     exit();
 }
 
-if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ]{2,50}", $modelo)){
+if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{2,50}", $modelo)){
     echo '
     <div class="notification is-danger is-light">
     <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -156,7 +157,7 @@ $check_area=null;
 
 /*verificar sector */
 $check_sector=conexion();
-$check_sector=$check_sector->query("SELECT sector_id From sector where _id='$sector'");
+$check_sector=$check_sector->query("SELECT sector_id From sector where sector_id='$sector'");
 if($check_sector->rowCount()<=0){
   echo'
   <div class="notification is-danger is-light">
@@ -169,12 +170,26 @@ if($check_sector->rowCount()<=0){
 }
 $check_sector=null;
 
+/*verificar estado */
+$check_estado=conexion();
+$check_estado=$check_estado->query("SELECT estado_id From estadoactivo where estado_id='$estado'");
+if($check_estado->rowCount()<=0){
+  echo'
+  <div class="notification is-danger is-light">
+  <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+  El estado no existe
+  </div>
+  ';
+  exit();
+
+}
+$check_estado=null;
+
       
   	/* Guardando datos */
-    $guardar_activo
-    =conexion();
-    $guardar_activo=$guardar_activo->prepare("INSERT INTO activo (activo_codigo	,activo_marca,activo_modelo,activo_serial,
-    categoria_id ,piso_id ,posición_id ,area_id ,sector_id ) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posision,:area,:sector)");
+    $guardar_activo=conexion();
+    $guardar_activo=$guardar_activo->prepare("INSERT INTO activo (activo_codigo,activo_marca,activo_modelo,activo_serial,
+    categoria_id,piso_id,posicion_id,area_id,sector_id,estado_id) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posision,:area,:sector,:estado)");
 
     $marcadores=[
         ":codigo"=>$codigo,
@@ -185,7 +200,8 @@ $check_sector=null;
         ":piso"=>$piso,
         ":posicion"=>$posicion,
         ":area"=>$area,
-        ":sector"=>$sector
+        ":sector"=>$sector,
+        ":estado"=>$estado
 
     ];
 
@@ -194,7 +210,7 @@ $check_sector=null;
     if($guardar_activo->rowCount()==1){
         echo '
         <div class="notification is-info is-light">
-        <strong>¡Equipo Registrado!</strong><br>
+        <strong>¡Activo Registrado!</strong><br>
         El activo se registro correctamente
     </div>
 ';
