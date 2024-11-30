@@ -34,8 +34,7 @@
 				  	<input class="input" type="text" name="activo_codigo" placeholder="Ingrese dato" pattern="[0-9]{3,50}" maxlength="50" require value="<?php echo $datos['activo_codigo']; ?>">
 				</div>
 		  	</div>
-				</div>
-		  	</div>
+				
 		<div class="column">
 		    	<div class="control">
 					<label>Marca</label>
@@ -58,17 +57,6 @@
 		</div>   
         </div>
 
-	/*	<div class="file">
-  <label class="file-label">
-    <input class="file-input" type="file" name="activo_documento" required value="<?php echo $datos['activo_documento']; ?> />
-    <span class="file-cta">
-      <span class="file-icon">
-        <i class="fas fa-upload"></i>
-      </span>
-      <span class="file-label"> Cargue el documento… </span>
-    </span>
-  </label>
-</div> */
 <div class="columns"> 
 	  	<div class="column">
 			<label>Categoria</label><br>
@@ -106,8 +94,7 @@
 							$pisos=$pisos->fetchAll();
 							foreach($pisos as $row){
 								if($datos['piso_id']==$row['piso_id']){
-								echo '<option value="'.$row['piso_id'].'" >'.$row['piso_numero'].'(Actual)</option>';
-
+								echo '<option value="'.$row['piso_id'].'" selected="" >'.$row['piso_numero'].' (Actual)</option>';
 						}else{
     									echo '<option value="'.$row['piso_id'].'" >'.$row['piso_numero'].'</option>';
     								}
@@ -133,7 +120,7 @@
 							$posiciones=$posiciones->fetchAll();
 							foreach($posiciones as $row){
 								if($datos['posicion_id']==$row['posicion_id']){
-								echo '<option value="'.$row['posicion_id'].'" >'.$row['posicion_posicion'].'(Actual)</option>';
+								echo '<option value="'.$row['posicion_id'].'" selected="" >'.$row['posicion_posicion'].' (Actual)</option>';
 
 						}else{
     									echo '<option value="'.$row['posicion_id'].'" >'.$row['posicion_posicion'].'</option>';
@@ -158,7 +145,7 @@
 							$areas=$areas->fetchAll();
 							foreach($areas as $row){
 								if($datos['area_id']==$row['area_id']){
-								echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'(Actual)</option>';
+								echo '<option value="'.$row['area_id'].'" selected="" >'.$row['area_nombre'].' (Actual)</option>';
 						}else{
     									echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'</option>';
     								}
@@ -185,7 +172,7 @@
 							$sectores=$sectores->fetchAll();
 							foreach($sectores as $row){
 								if($datos['sector_id']==$row['sector_id']){
-								echo '<option value="'.$row['sector_id'].'" >'.$row['sector_nombre'].'(Actual)</option>';
+								echo '<option value="'.$row['sector_id'].'" selected="" >'.$row['sector_nombre'].' (Actual)</option>';
 						}else{
     									echo '<option value="'.$row['sector_id'].'" >'.$row['sector_nombre'].'</option>';
     								}
@@ -198,31 +185,57 @@
                     </div>
                     </div>
 					<div class="column">
-			<label>Categoria</label><br>
+			<label>Estado</label><br>
 			<div class="select is-rounded">
-				<select name="activo_estado">
+				<select name="activo_estadoactivo">
 					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
-					    $categorias=conexion();
-						$categorias=$categorias->query("SELECT * From estadoactivo");
-						if($categorias->rowCount()>0){
-							$categorias=$categorias->fetchAll();
-							foreach($categorias as $row){
-								if($datos['estado_id']==$row['estado_id']){
-								echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'(Actual)</option>';
+					    $estadoactivos=conexion();
+						$estadoactivos=$estadoactivos->query("SELECT * From estadoactivo");
+						if($estadoactivos->rowCount()>0){
+							$estadoactivos=$estadoactivos->fetchAll();
+							foreach($estadoactivos as $row){
+								if($datos['estadoactivo_id']==$row['estadoactivo_id']){
+								echo '<option value="'.$row['estadoactivo_id'].'" selected="" >'.$row['estadoactivo_nombre'].' (Actual)</option>';
 
 						}else{
-    									echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'</option>';
+    									echo '<option value="'.$row['estadoactivo_id'].'" >'.$row['estadoactivo_nombre'].'</option>';
     								}
 				    			}
 							}
 				   			
-						$categorias=null;
+						$estadoactivos=null;
 					?>
                     </select>
                     </div>
                     </div>
 					</div>
+
+					<div class="columns"> 
+					<div class="column">
+					<div class="field">
+  					<label>Comentario</label>
+   					 <textarea class="textarea is-small" type="text" name="activo_comentario" placeholder="Agregue su comentario por la modificación del activo"
+   					 ></textarea>
+  					</div>
+					  </div>
+					  
+					  <div class="column">
+					<div class="file is-info has-name">
+					 <input class="file-input" type="file" name="activo_documento"/>							 
+    							<span class="file-cta">
+    						  <span class="file-icon">
+       					 <i class="fas fa-upload"></i>
+     				 </span>
+					  <label class="file-label">
+     			 <span class="file-label"> Elija un archivo... </span>
+    		</span>
+   		 <span class="file-name"> Documentación </span>
+ 			 </label>
+</div>
+</div>
+</div>
+
 		<p class="has-text-centered">
 			<button type="submit" class="button is-success is-rounded">Actualizar</button>
 		</p>

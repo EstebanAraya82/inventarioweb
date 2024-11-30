@@ -17,7 +17,7 @@
     <div class="columns">
         <div class="column">
             <form action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="categoria">
+                <input type="hidden" name="modulo_buscador" value="area">
                 <div class="field is-grouped">
                     <p class="control is-expanded">
                         <input class="input is-rounded" type="text" name="txt_buscador" placeholder="¿Qué estas buscando?" 

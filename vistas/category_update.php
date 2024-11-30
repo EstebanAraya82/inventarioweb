@@ -29,7 +29,7 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombre</label>
-				  	<input class="input" type="text" name="categoria_nombre" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required value="<?php echo $datos['categoria_nombre']; ?>" >
+				  	<input class="input" type="text" name="categoria_nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required value="<?php echo $datos['categoria_nombre']; ?>" >
 				</div>
 		  	</div>
 		  </div>

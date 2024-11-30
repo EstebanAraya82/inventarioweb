@@ -3,11 +3,15 @@
     <h2 class="subtitle">Lista de estados</h2>
 </div>
 
-<div class="container pb-6 pt-6">  
+<div class="container pb-12 pt-12">  
     <?php
         include "./inc/btn_atras.php";
         require_once "./php/main.php";
 
+         /* Eliminar estado activo */
+         if(isset($_GET['atatusasstet_id_del'])){
+            require_once "./php/estadoactivo_eliminar.php";
+        }
        
         if(!isset($_GET['page'])){
             $pagina=1;
@@ -23,7 +27,7 @@
         $registros=3;
         $busqueda="";
 
-        # Paginador usuario #
+        /* Paginador estado activo */
         require_once "./php/estadoactivo_listar.php";
     ?>
 </div>

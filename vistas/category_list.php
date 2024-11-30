@@ -8,10 +8,10 @@
         include "./inc/btn_atras.php";
         require_once "./php/main.php";
 
-        /* Eliminar categoria
+       /* Eliminar categoria */
         if(isset($_GET['category_id_del'])){
             require_once "./php/categoria_eliminar.php";
-        } */
+        }
 
         if(!isset($_GET['page'])){
             $pagina=1;
@@ -22,11 +22,9 @@
             }
         }
 
-        $categoria_id=(isset($_GET['categoria_id'])) ?  $_GET['categoria_id'] : 0;
-
         $pagina=limpiar_cadena($pagina);
         $url="index.php?vista=category_list&page=";
-        $registros=5;
+        $registros=10;
         $busqueda="";
 
         /* Paginador categoria */

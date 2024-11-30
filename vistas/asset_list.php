@@ -10,7 +10,7 @@
 
         /* Eliminar activo 
         if(isset($_GET['asset_id_del'])){
-            require_once "./php/equipo_eliminar.php";
+            require_once "./php/activo_eliminar.php";
         } */
 
         if(!isset($_GET['page'])){
@@ -27,7 +27,7 @@
         $posicion_id=(isset($_GET['posicion_id'])) ?  $_GET['posicion_id'] : 0;
         $area_id=(isset($_GET['area_id'])) ?  $_GET['area_id'] : 0;
         $sector_id=(isset($_GET['sector_id'])) ?  $_GET['sector_id'] : 0;
-        $estado_id=(isset($_GET['estado_id'])) ?  $_GET['estado_id'] : 0;
+        $estadoactivo_id=(isset($_GET['estadoactivo_id'])) ?  $_GET['estadoactivo_id'] : 0;
 
         $pagina=limpiar_cadena($pagina);
         $url="index.php?vista=asset_list&page=";

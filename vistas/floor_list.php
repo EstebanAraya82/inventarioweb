@@ -3,11 +3,15 @@
     <h2 class="subtitle">Lista de pisos</h2>
 </div>
 
-<div class="container pb-6 pt-6">  
+<div class="container pb-12 pt-12">  
     <?php
         include "./inc/btn_atras.php";
         require_once "./php/main.php";
 
+         /* Eliminar piso */
+         if(isset($_GET['floor_id_del'])){
+            require_once "./php/piso_eliminar.php";
+        }
        
         if(!isset($_GET['page'])){
             $pagina=1;
@@ -20,10 +24,10 @@
 
         $pagina=limpiar_cadena($pagina);
         $url="index.php?vista=floor_list&page=";
-        $registros=3;
+        $registros=5;
         $busqueda="";
 
-        # Paginador rol #
+        /* Paginador piso */
         require_once "./php/piso_listar.php";
     ?>
 </div>

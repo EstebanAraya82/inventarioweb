@@ -12,7 +12,7 @@
 		  	<div class="column">
 		    	<div class="control">
 					<label>Nombre</label>
-				  	<input class="input" type="text" name="categoria_nombre" placeholder="Ingrese dato" pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
+				  	<input class="input" type="text" name="categoria_nombre" placeholder="Ingrese dato" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}" maxlength="50" required >
 				</div>
 		  	</div>
 		</div>

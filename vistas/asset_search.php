@@ -34,19 +34,19 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="equipo"> 
-                <input type="hidden" name="eliminar_buscador" value="equipo">
-                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_equipo']; ?>”</strong></p>
+                <input type="hidden" name="modulo_buscador" value="activo"> 
+                <input type="hidden" name="eliminar_buscador" value="activo">
+                <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_activo']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
             </form>
         </div>
     </div>
     <?php
-            /* Eliminar equipo 
-            if(isset($_GET['id_equipo_del'])){
-                require_once "./php/equipo_eliminar.php";
-            } */
+            /* Eliminar equipo */
+            if(isset($_GET['activo_id_del'])){
+                require_once "./php/activo_eliminar.php";
+            } 
 
             if(!isset($_GET['page'])){
                 $pagina=1;
@@ -57,15 +57,20 @@
                 }
             }
 
-            $id_categoria = (isset($_GET['id_categoria'])) ? $_GET['id_categoria'] : 0;
+            $categoria_id = (isset($_GET['categoria_id'])) ? $_GET['categoria_id'] : 0;
+            $piso_id = (isset($_GET['piso_id'])) ? $_GET['piso_id'] : 0;
+            $posicion_id = (isset($_GET['posicion_id'])) ? $_GET['posicion_id'] : 0;
+            $area_id = (isset($_GET['area_id'])) ? $_GET['area_id'] : 0;
+            $sector_id = (isset($_GET['sector_id'])) ? $_GET['sector_id'] : 0;
+            $estadoactivo_id = (isset($_GET['estadoactivo_id'])) ? $_GET['estadoactivo_id'] : 0;
 
             $pagina=limpiar_cadena($pagina);
             $url="index.php?vista=asset_search&page="; 
             $registros=5;
-            $busqueda=$_SESSION['busqueda_equipo']; 
+            $busqueda=$_SESSION['busqueda_activo']; 
 
             /* Paginador activo */
-            require_once "./php/equipo_listar.php";
+            require_once "./php/activo_listar.php";
         } 
     ?>
 </div>

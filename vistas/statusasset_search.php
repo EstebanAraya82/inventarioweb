@@ -17,7 +17,7 @@
     <div class="columns">
         <div class="column">
             <form action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="usuario">   
+                <input type="hidden" name="modulo_buscador" value="estadoactivo">   
                 <div class="field is-grouped">
                     <p class="control is-expanded">
                         <input class="input is-rounded" type="text" name="txt_buscador" placeholder="¿Qué estas buscando?" 
@@ -34,8 +34,8 @@
     <div class="columns">
         <div class="column">
             <form class="has-text-centered mt-6 mb-6" action="" method="POST" autocomplete="off" >
-                <input type="hidden" name="modulo_buscador" value="rol"> 
-                <input type="hidden" name="eliminar_buscador" value="rol">
+                <input type="hidden" name="modulo_buscador" value="estadoactivo"> 
+                <input type="hidden" name="eliminar_buscador" value="estadoactivo">
                 <p>Estas buscando <strong>“<?php echo $_SESSION['busqueda_estado']; ?>”</strong></p>
                 <br>
                 <button type="submit" class="button is-danger is-rounded">Eliminar busqueda</button>
@@ -53,12 +53,12 @@
             }
 
             $pagina=limpiar_cadena($pagina);
-            $url="index.php?vista=status_search&page="; 
+            $url="index.php?vista=statusasset_search&page="; 
             $registros=10;
             $busqueda=$_SESSION['busqueda_estado']; 
 
-            /* Paginador usuario */
-            require_once "./php/estado_listar.php";
+            /* Paginador estado activo */
+            require_once "./php/estadoactivo_listar.php";
         } 
     ?>
 </div>

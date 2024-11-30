@@ -8,6 +8,11 @@
         include "./inc/btn_atras.php";
         require_once "./php/main.php";
 
+         /* Eliminar rol */
+         if(isset($_GET['role_id_del'])){
+            require_once "./php/rol_eliminar.php";
+        }
+
        
         if(!isset($_GET['page'])){
             $pagina=1;
@@ -23,7 +28,7 @@
         $registros=3;
         $busqueda="";
 
-        /* Paginador posición */
+        /* Paginador rol */
         require_once "./php/rol_listar.php";
     ?>
 </div>

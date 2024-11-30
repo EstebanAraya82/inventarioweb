@@ -148,19 +148,19 @@
 					<div class="column">
 			<label>Estado</label><br>
 			<div class="select is-rounded">
-				<select name="activo_estado">
+				<select name="activo_estadoactivo">
 					<option value="" selected="" >Seleccione una opción</option>					
 					<?php
-					    $estados=conexion();
-						$estados=$estados->query("SELECT * From estadoactivo");
-						if($estados->rowCount()>0){
-							$estados=$estados->fetchAll();
-							foreach($estados as $row){
-								echo '<option value="'.$row['estado_id'].'" >'.$row['estado_nombre'].'</option>';
+					    $estadoactivos=conexion();
+						$estadoactivos=$estadoactivos->query("SELECT * From estadoactivo");
+						if($estadoactivos->rowCount()>0){
+							$estadoactivos=$estadoactivos->fetchAll();
+							foreach($estadoactivos as $row){
+								echo '<option value="'.$row['estadoactivo_id'].'" >'.$row['estadoactivo_nombre'].'</option>';
 
 							}
 						}
-						$estados=null;
+						$estadoactivos=null;
 					?>
                     </select>
                     </div>
