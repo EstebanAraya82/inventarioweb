@@ -1,4 +1,5 @@
 <?php
+
     require_once "main.php"; 
 
     /* Almacenar datos */
@@ -8,13 +9,13 @@
     $correo=limpiar_cadena($_POST['usuario_correo']);
     $clave_1=limpiar_cadena($_POST['usuario_clave_1']);
     $clave_2=limpiar_cadena($_POST['usuario_clave_2']);
-    $estado=limpiar_cadena($_POST['usuario_estado']);
+    $estadousuario=limpiar_cadena($_POST['usuario_estadousuario']);
     $rol=limpiar_cadena($_POST['usuario_rol']);
     
 
 
     /* Verificar campos obligatorios */
-    if($nombre=="" || $apellido=="" || $usuario=="" || $clave_1=="" || $clave_2=="" || $estado=="" || $rol==""){
+    if($nombre=="" || $apellido=="" || $usuario=="" || $clave_1=="" || $clave_2=="" || $estadousuario=="" || $rol==""){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -120,10 +121,10 @@
         $clave=password_hash($clave_1,PASSWORD_BCRYPT,["cost"=>10]);
     }
 
-      /* verificar estado */
-      $check_estado=conexion();
-      $check_estado=$check_estado->query("SELECT estado_id FROM estadousuario WHERE estado_id='$estado'");
-      if($check_estado->rowCount()<=0){
+      /* verificar estado usuario */
+      $check_estadousuario=conexion();
+      $check_estadousuario=$check_estadousuario->query("SELECT estadousuario_id FROM estadousuario WHERE estadousuario_id='$estadousuario'");
+      if($check_estadousuario->rowCount()<=0){
           echo'
           <div class="notification is-danger is-light">
           <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -132,7 +133,7 @@
           ';
           exit();
       }
-      $check_estado=null;
+      $check_estadousuario=null;
 
     /* verificar rol */
     $check_rol=conexion();
@@ -151,7 +152,7 @@
     /* Guardando datos */
     $guardar_usuario=conexion();
     $guardar_usuario=$guardar_usuario->prepare("INSERT INTO usuario (usuario_nombre,usuario_apellido,usuario_usuario,usuario_correo,
-    usuario_clave,estado_id,rol_id) VALUES(:nombre,:apellido,:usuario,:correo,:clave,:estado,:rol)");
+    usuario_clave,estadousuario_id,rol_id) VALUES(:nombre,:apellido,:usuario,:correo,:clave,:estadousuario,:rol)");
 
     $marcadores=[
         ":nombre"=>$nombre,
@@ -159,7 +160,7 @@
         ":usuario"=>$usuario,
         ":correo"=>$correo,
         ":clave"=>$clave,
-        ":estado"=> $estado,
+        ":estadousuario"=>$estadousuario,
         ":rol"=>$rol
     ];
 

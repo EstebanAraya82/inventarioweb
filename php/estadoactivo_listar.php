@@ -4,15 +4,15 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM estadoactivo WHERE estado_nombre LIKE '%$busqueda%' ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadoactivo WHERE estadoactivo_nombre LIKE '%$busqueda%' ORDER BY estadoactivo_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM estadoactivo WHERE estado_nombre LIKE '%$busqueda%'";
+		$consulta_total="SELECT COUNT(estadoactivo_id) FROM estadoactivo WHERE estadoactivo_nombre LIKE '%$busqueda%'";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM estadoactivo ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadoactivo ORDER BY estadoactivo_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM estadoactivo";
+		$consulta_total="SELECT COUNT(estadoactivo_id) FROM estadoactivo";
 		
 	} 
 
@@ -33,6 +33,8 @@
                 <tr class="has-text-centered">
                 	<th>#</th>
                     <th>Estado</th>
+					<th>Activos</th>
+					<th colspan="2">Opciones</th>
                     </tr>
             </thead>
             <tbody>
@@ -45,12 +47,12 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['estado_nombre'].'</td>
+                    <td>'.$rows['estadoactivo_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_list&estado_id='.$rows['estado_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
+                        <a href="index.php?vista=asset_list&estadoactivo_id='.$rows['estadoactivo_id'].'" class="button is-link is-rounded is-small">Ver Activos</a>
                     </td>
                     <td>
-                        <a href="index.php?vista=statusasset_update&statusasset_id_up='.$rows['estado_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+                        <a href="index.php?vista=statusasset_update&statusasset_id_up='.$rows['estadoactivo_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     </tr>
             ';

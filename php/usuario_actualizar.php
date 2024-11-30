@@ -98,13 +98,13 @@
     $usuario=limpiar_cadena($_POST['usuario_usuario']);
     $clave_1=limpiar_cadena($_POST['usuario_clave_1']);
     $clave_2=limpiar_cadena($_POST['usuario_clave_2']);
-    $estado=limpiar_cadena($_POST['estado_nombre']);
+    $estadousuario=limpiar_cadena($_POST['estadousuario_nombre']);
     $rol=limpiar_cadena($_POST['rol_nombre']);
 
 
 
     /* Verificando campos obligatorios del usuario */
-     if($nombre=="" || $apellido=="" || $usuario=="" || $estado=="" || $rol==""){
+     if($nombre=="" || $apellido=="" || $usuario=="" || $estadousuario=="" || $rol==""){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Ocurrio un error inesperado!</strong><br>
@@ -194,14 +194,14 @@
     /* Actualizar datos */
     $actualizar_usuario=conexion();
     $actualizar_usuario=$actualizar_usuario->prepare("UPDATE usuario SET usuario_nombre=:nombre,usuario_apellido=:apellido,
-    usuario_usuario=:usuario,usuario_clave=:clave,usuario_estado,usuario_rol=:rol WHERE usuario_id=:id");
+    usuario_usuario=:usuario,usuario_clave=:clave,usuario_estadousuario=:estadousuario,usuario_rol=:rol WHERE usuario_id=:id");
 
     $marcadores=[
         ":nombre"=>$nombre,
         ":apellido"=>$apellido,
         ":usuario"=>$usuario,
         ":clave"=>$clave,
-        ":estado"=>$estado,
+        ":estadousuario"=>$estadousuario,
         ":rol"=>$rol,
         ":id"=>$id
     ];

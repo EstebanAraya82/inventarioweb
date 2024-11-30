@@ -6,7 +6,7 @@
 
 		$consulta_datos="SELECT * FROM posicion WHERE posicion_posicion LIKE '%$busqueda%' ORDER BY posicion_posicion ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(posicion_id) FROM sector WHERE posicion_posicion LIKE '%$busqueda%'";
+		$consulta_total="SELECT COUNT(posicion_id) FROM posicion WHERE posicion_posicion LIKE '%$busqueda%'";
 
 	}else{
 
@@ -47,7 +47,7 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['posicion_posicion'].'</td>
                     <td>
-                        <a href="index.php?vista=position_update&position_id='.$rows['posicion_id'].'" class="button is-link is-rounded is-small">Ver posiciones</a>
+                        <a href="index.php?vista=asset_list&position_id='.$rows['posicion_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
                     </td>
                     </tr>
             ';

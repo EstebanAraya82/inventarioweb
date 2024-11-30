@@ -31,7 +31,8 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Sector</th>
+                    <th>Nombre</th>
+					<th>Activos</th>
 					<th colspan="2">Opciones</th>
                     </tr>
             </thead>
@@ -47,7 +48,10 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['sector_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=sector_update&sector_id='.$rows['sector_id'].'" class="button is-link is-rounded is-small">Ver Sectores</a>
+                        <a href="index.php?vista=asset_list&sector_id='.$rows['sector_id'].'" class="button is-link is-rounded is-small">Ver Activos</a>
+                    </td>
+					 <td>
+                        <a href="index.php?vista=sector_update&sector_id_up='.$rows['sector_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     </tr>
             ';

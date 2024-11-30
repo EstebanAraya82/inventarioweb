@@ -13,7 +13,7 @@
     	echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
-                La categoría no existe en el sistema
+                El piso no existe en el sistema
             </div>
         ';
         exit();

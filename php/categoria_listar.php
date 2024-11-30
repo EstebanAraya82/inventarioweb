@@ -32,7 +32,8 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Categoria</th>
+                    <th>Nombre</th>
+					<th>Activos</th>
                     <th colspan="2">Opciones</th>
                     </tr>
             </thead>
@@ -48,12 +49,12 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['categoria_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=asset_list&category_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver equipos</a>
+                        <a href="index.php?vista=asset_list&categoria_id='.$rows['categoria_id'].'" class="button is-link is-rounded is-small">Ver Activos</a>
                     </td>
-                    <td>
+					 <td>
                         <a href="index.php?vista=category_update&category_id_up='.$rows['categoria_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
-                    </tr>
+                   </tr>
             ';
             $contador++;
 		}

@@ -47,7 +47,7 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['rol_nombre'].'</td>
 					<td>
-                        <a href="index.php?vista=user_role&rol_id='.$rows['rol_id'].'" class="button is-link is-rounded is-small">Ver usuarios</a>
+                        <a href="index.php?vista=user_list&rol_id='.$rows['rol_id'].'" class="button is-link is-rounded is-small">Ver Usuarios</a>
                     </td>
 					 <td>
                         <a href="index.php?vista=role_update&role_id_up='.$rows['rol_id'].'" class="button is-success is-rounded is-small">Actualizar</a>

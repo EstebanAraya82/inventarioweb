@@ -32,6 +32,7 @@ $inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
                 <tr class="has-text-centered">
                 	<th>#</th>
                     <th>Piso</th>
+					<th>Activos</th>
 					<th colspan="2">Opciones</th>
                     </tr>
             </thead>
@@ -47,7 +48,11 @@ $inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 					<td>'.$contador.'</td>
                     <td>'.$rows['piso_numero'].'</td>
                     <td>
-                        <a href="index.php?vista=floor_update&piso_id='.$rows['piso_id'].'" class="button is-link is-rounded is-small">Ver Pisos</a>
+                        <a href="index.php?vista=asset_list&piso_id='.$rows['piso_id'].'" class="button is-link is-rounded is-small">Ver activos</a>
+                    </td>
+					</td>
+					 <td>
+                        <a href="index.php?vista=floor_update&floor_id_up='.$rows['piso_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
                     </tr>
             ';

@@ -2,18 +2,30 @@
 	$inicio = ($pagina>0) ? (($pagina * $registros)-$registros) : 0;
 	$tabla="";
 
-	$campos="usuario.usuario_id,usuario.usuario_nombre,usuario.usuario_apellido,usuario.usuario_usuario,usuario.usuario_correo,usuario.estado_id,usuario.rol_id,estadousuario.estado_id,estadousuario.estado_nombre,rol.rol_id,rol.rol_nombre";
+	$campos="usuario.usuario_id,usuario.usuario_nombre,usuario.usuario_apellido,usuario.usuario_usuario,usuario.usuario_correo,usuario.estadousuario_id,usuario.rol_id,estadousuario.estadousuario_id,estadousuario.estadousuario_nombre,rol.rol_id,rol.rol_nombre";
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estadousuario ON usuario.estado_id=estadousuario.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.usuario_nombre LIKE '%$busqueda%' 
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estadousuario ON usuario.estadousuario_id=estadousuario.estadousuario_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.usuario_nombre LIKE '%$busqueda%' 
 		OR usuario.usuario_apellido LIKE '%$busqueda%' OR usuario.usuario_correo LIKE '%$busqueda%' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
 
 		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE usuario_nombre LIKE '%$busqueda%' OR usuario_usuario LIKE '%$busqueda%'";
 
+	}elseif($estadousuario_id>0){
+
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estadousuario ON usuario.estadousuario_id=estadousuario.estadousuario_id INNER JOIN rol ON usuario.rol_id=rol.rol_id WHERE usuario.estadousuario_id='$estadousuario_id' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
+
+		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE estadousuario_id='$estadousuario_id'";
+
+	}elseif($rol_id>0){
+
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN rol ON usuario.rol_id=rol.rol_id INNER JOIN estadousuario ON usuario.estadousuario_id=estadousuario.estadousuario_id  WHERE usuario.rol_id='$rol_id' ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
+
+		$consulta_total="SELECT COUNT(usuario_id) FROM usuario WHERE rol_id='$rol_id'";
+
 	} else{
 
-		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estadousuario ON usuario.estado_id=estadousuario.estado_id INNER JOIN rol ON usuario.rol_id=rol.rol_id ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT $campos FROM usuario INNER JOIN estadousuario ON usuario.estadousuario_id=estadousuario.estadousuario_id INNER JOIN rol ON usuario.rol_id=rol.rol_id ORDER BY usuario.usuario_usuario ASC LIMIT $inicio,$registros";
 
 		$consulta_total="SELECT COUNT(usuario_id) FROM usuario";
 		
@@ -58,7 +70,7 @@
                     <td>'.$rows['usuario_apellido'].'</td>
                     <td>'.$rows['usuario_usuario'].'</td>
 					<td>'.$rows['usuario_correo'].'</td>
-                    <td>'.$rows['estado_nombre'].'</td>
+                    <td>'.$rows['estadousuario_nombre'].'</td>
                     <td>'.$rows['rol_nombre'].'</td>
 					<td>
 					<a href="index.php?vista=user_update&user_id_up='.$rows['usuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>

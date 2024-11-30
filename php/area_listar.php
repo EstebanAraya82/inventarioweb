@@ -32,7 +32,8 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Área</th>
+					<th>Nombre</th>
+                    <th>Activos</th>
                     <th colspan="2">Opciones</th>
                     </tr>
             </thead>
@@ -48,7 +49,7 @@
 					<td>'.$contador.'</td>
                     <td>'.$rows['area_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=area_new&area_id='.$rows['area_id'].'" class="button is-link is-rounded is-small">Ver áreas</a>
+                        <a href="index.php?vista=asset_list&area_id='.$rows['area_id'].'" class="button is-link is-rounded is-small">Ver activos</a>
                     </td>
                     <td>
                         <a href="index.php?vista=area_update&area_id_up='.$rows['area_id'].'" class="button is-success is-rounded is-small">Actualizar</a>

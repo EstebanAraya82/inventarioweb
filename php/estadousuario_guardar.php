@@ -2,7 +2,7 @@
     require_once "main.php"; 
 
     /* Almacenar datos */
-    $nombre=limpiar_cadena($_POST['estado_nombre']);
+    $nombre=limpiar_cadena($_POST['estadousuario_nombre']);
 
     /* Verificar campos obligatorios */
     if($nombre=="" ){
@@ -28,17 +28,17 @@
     }
 
     /* Guardando datos */
-    $guardar_estado=conexion();
-    $guardar_estado=$guardar_estado->prepare("INSERT INTO estadousuario (estado_nombre) VALUES(:nombre)");
+    $guardar_estadousuario=conexion();
+    $guardar_estadousuario=$guardar_estadousuario->prepare("INSERT INTO estadousuario (estadousuario_nombre) VALUES(:nombre)");
 
     $marcadores=[
         ":nombre"=>$nombre
        
     ];
 
-    $guardar_estado->execute($marcadores);
+    $guardar_estadousuario->execute($marcadores);
 
-    if($guardar_estado->rowCount()==1){
+    if($guardar_estadousuario->rowCount()==1){
         echo '
             <div class="notification is-info is-light">
                 <strong>¡Usuario Registrado!</strong><br>
@@ -53,4 +53,4 @@
             </div>
         ';
     }
-    $guardar_estado=null;
+    $guardar_estadousuario=null;

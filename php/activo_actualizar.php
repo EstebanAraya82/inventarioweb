@@ -18,9 +18,9 @@
         ';
         exit();
     }else{
-    	$datos=$check_equipo->fetch();
+    	$datos=$check_activo->fetch();
     }
-    $check_equipo=null;
+    $check_activo=null;
 
 
     /* Almacenando datos */
@@ -28,18 +28,20 @@
     $marca=limpiar_cadena($_POST['activo_marca']);
     $modelo=limpiar_cadena($_POST['activo_modelo']);
     $serial=limpiar_cadena($_POST['activo_serial']);
-   /* $documento=limpiar_cadena($_POST['activo_documento']); */
+    /*$comentario=limpiar_cadena($_POST['activo_comentario']);
+    $documento=limpiar_cadena($_POST['activo_documento']); */
     $categoria=limpiar_cadena($_POST['activo_categoria']);
     $piso=limpiar_cadena($_POST['activo_piso']);
     $posicion=limpiar_cadena($_POST['activo_posicion']);
     $area=limpiar_cadena($_POST['activo_area']);
-    $servicio=limpiar_cadena($_POST['activo_servicio']);
+    $sector=limpiar_cadena($_POST['activo_sector']);
+    $estadoactivo=limpiar_cadena($_POST['activo_estadoactivo']);
 
 
 
 
 	/* Verificando campos obligatorios */
-    if($codigo=="" || $marca=="" || $modelo=="" || $serial=="" || /* $documento=="" || */ $categoria=="" || $piso=="" || $posicion=="" || $area=="" || $servicio==""){
+    if($codigo=="" || $marca=="" || $modelo=="" || $serial=="" /*|| $comentario=="" || $documento==""*/ || $categoria=="" || $piso=="" || $posicion=="" || $area=="" || $sector=="" || $estadoactivo==""){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -91,7 +93,17 @@
             exit();
         }
 
-      /*  if(verificar_datos("[a-zA-Z0-9 ]{2,100}", $documento)){
+        if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]{2,300}", $comentario)){
+            echo '
+                <div class="notification is-danger is-light">
+                    <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                    El rcomentario no coincide con el formato solicitado
+                </div>
+            ';
+            exit();
+            } 
+
+      if(verificar_datos("[a-zA-Z0-9]{2,300}", $documento)){
         echo '
             <div class="notification is-danger is-light">
                 <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -99,9 +111,9 @@
             </div>
         ';
         exit();
-        } */
+        } 
 
-        if(verificar_datos("[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}", $categoria)){
+        if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}", $categoria)){
             echo '
                 <div class="notification is-danger is-light">
                     <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -151,6 +163,16 @@
             exit();
                  }
 
+         if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{2,50}", $estadoactivo)){
+             echo '
+                 <div class="notification is-danger is-light">
+                     <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+                      El sector no coincide con el formato solicitado
+                </div>
+            ';
+            exit();
+                        }
+
 
     /* Verificando codigo */
     if($activo!=$datos['activo_codigo']){
@@ -187,7 +209,7 @@
      /* Verificando piso */
      if($piso!=$datos['piso_id']){
 	    $check_piso=conexion();
-	    $check_piso=$check_piso->query("SELECT piso_id FROM categoria WHERE piso_id='$piso'");
+	    $check_piso=$check_piso->query("SELECT piso_id FROM piso WHERE piso_id='$piso'");
 	    if($check_piso->rowCount()<=0){
 	        echo '
 	            <div class="notification is-danger is-light">
@@ -248,23 +270,42 @@
 	    $check_sector=null;
     }
 
+     /* Verificando estado activo */
+     if($estadoactivo!=$estadoactivo['estadoactivo_id']){
+	    $check_estadoactivo=conexion();
+	    $check_estadoactivo=$check_estadoactivo->query("SELECT estadoactivo_id FROM estadoactivo WHERE estadoactivo_id='$estadoactivo'");
+	    if($check_estadoactivo->rowCount()<=0){
+	        echo '
+	            <div class="notification is-danger is-light">
+	                <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
+	                El estado seleccionado no existe
+	            </div>
+	        ';
+	        exit();
+	    }
+	    $check_estadoactivo=null;
+    }
+
     
 
       /* Actualizando datos */
     $actualizar_activo=conexion();
-    $actualizar_activo=$actualizar_activo->prepare("UPDATE activo SET activo_codigo=:codigo,activo_marca=:marca,equipo_piso=:piso,equipo_ubicacion=:ubicacion,equipo_responsable:responsable,id_categoria=:categoria WHERE id_equipo=:id");
+    $actualizar_activo=$actualizar_activo->prepare("UPDATE activo SET activo_codigo=:codigo,activo_marca=:marca,activo_modelo=:modelo,activo_serial=:serial,activo_comentario=:comentario,activo_documento=:documento,activo_categoria=:categoria
+    activo_piso=:piso,activo_posicion=:posicion,activo_area=:area,activo_sector=:sector,activo_estadoactivo=:estadoactivo WHERE activo_id=:id");
 
     $marcadores=[
         ":codigo"=>$codigo,
         ":marca"=>$marca,
         ":modelo"=>$modelo,
         ":serial"=>$serial,
-        /*":documento"=>$documento,*/
+        ":comentario"=>$comentario,
+        ":documento"=>$documento,
         ":categoria"=>$categoria,
         ":piso"=>$piso,
         ":posicion"=>$posicion,
         ":area"=>$area,
         ":sector"=>$sector,
+        ":estadoactivo"=>$estadoactivo,
         ":id"=>$id
     ];
 

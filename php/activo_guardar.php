@@ -13,12 +13,12 @@ $piso=limpiar_cadena($_POST['activo_piso']);
 $posicion=limpiar_cadena($_POST['activo_posicion']);
 $area=limpiar_cadena($_POST['activo_area']);
 $sector=limpiar_cadena($_POST['activo_sector']);
-$estado=limpiar_cadena($_POST['activo_estado']);
+$estadoactivo=limpiar_cadena($_POST['activo_estadoactivo']);
 
 
 /* Verificación de datos obligatorios */
 if($codigo=="" || $marca=="" || $modelo=="" || $serial=="" || $categoria=="" || $piso=="" ||
- $posicion=="" || $area=="" || $sector=="" || $estado==""){
+ $posicion=="" || $area=="" || $sector=="" || $estadoactivo==""){
     echo '
     <div class="notification is-danger is-light">
   <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -170,10 +170,10 @@ if($check_sector->rowCount()<=0){
 }
 $check_sector=null;
 
-/*verificar estado */
-$check_estado=conexion();
-$check_estado=$check_estado->query("SELECT estado_id From estadoactivo where estado_id='$estado'");
-if($check_estado->rowCount()<=0){
+/*verificar estado activo */
+$check_estadoactivo=conexion();
+$check_estadoactivo=$check_estadoactivo->query("SELECT estadoactivo_id From estadoactivo where estadoactivo_id='$estadoactivo'");
+if($check_estadoactivo->rowCount()<=0){
   echo'
   <div class="notification is-danger is-light">
   <strong>¡Lo sentimos, ocurrio un error inesperado!</strong><br>
@@ -183,13 +183,13 @@ if($check_estado->rowCount()<=0){
   exit();
 
 }
-$check_estado=null;
+$check_estadoactivo=null;
 
       
   	/* Guardando datos */
     $guardar_activo=conexion();
     $guardar_activo=$guardar_activo->prepare("INSERT INTO activo (activo_codigo,activo_marca,activo_modelo,activo_serial,
-    categoria_id,piso_id,posicion_id,area_id,sector_id,estado_id) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posicion,:area,:sector,:estado)");
+    categoria_id,piso_id,posicion_id,area_id,sector_id,estadoactivo_id) VALUES(:codigo,:marca,:modelo,:serial,:categoria,:piso,:posicion,:area,:sector,:estadoactivo)");
 
     $marcadores=[
         ":codigo"=>$codigo,
@@ -201,7 +201,7 @@ $check_estado=null;
         ":posicion"=>$posicion,
         ":area"=>$area,
         ":sector"=>$sector,
-        ":estado"=>$estado
+        ":estadoactivo"=>$estadoactivo
 
     ];
 

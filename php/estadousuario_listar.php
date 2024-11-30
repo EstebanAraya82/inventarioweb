@@ -4,17 +4,17 @@
 
 	if(isset($busqueda) && $busqueda!=""){
 
-		$consulta_datos="SELECT * FROM estadousuario WHERE estado_nombre LIKE '%$busqueda%' ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadousuario WHERE estadousuario_nombre LIKE '%$busqueda%' ORDER BY estadousuario_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM rol WHERE estado_nombre LIKE '%$busqueda%'";
+		$consulta_total="SELECT COUNT(estadousuario_id) FROM estadousuario WHERE estadousuario_nombre LIKE '%$busqueda%' ";
 
 	}else{
 
-		$consulta_datos="SELECT * FROM estadousuario ORDER BY estado_nombre ASC LIMIT $inicio,$registros";
+		$consulta_datos="SELECT * FROM estadousuario ORDER BY estadousuario_nombre ASC LIMIT $inicio,$registros";
 
-		$consulta_total="SELECT COUNT(estado_id) FROM estadousuario";
+		$consulta_total="SELECT COUNT(estadousuario_id) FROM estadousuario";
 		
-	} 
+	}
 
 	$conexion=conexion();
 
@@ -32,7 +32,9 @@
             <thead>
                 <tr class="has-text-centered">
                 	<th>#</th>
-                    <th>Estado</th>
+                    <th>Nombre</th>
+					<th>Estados</th>
+                    <th colspan="2">Opciones</th>
                     </tr>
             </thead>
             <tbody>
@@ -45,14 +47,14 @@
 			$tabla.='
 				<tr class="has-text-centered" >
 					<td>'.$contador.'</td>
-                    <td>'.$rows['estado_nombre'].'</td>
+                    <td>'.$rows['estadousuario_nombre'].'</td>
                     <td>
-                        <a href="index.php?vista=user_statususer&statususer_id='.$rows['estado_id'].'" class="button is-link is-rounded is-small">Ver Usuarios</a>
+                        <a href="index.php?vista=user_list&estadousuario_id='.$rows['estadousuario_id'].'" class="button is-link is-rounded is-small">Ver usuarios</a>
                     </td>
-                    <td>
-                        <a href="index.php?vista=statususer_update&statususer_id_up='.$rows['estado_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
+					 <td>
+                        <a href="index.php?vista=statususer_update&status_id_up='.$rows['estadousuario_id'].'" class="button is-success is-rounded is-small">Actualizar</a>
                     </td>
-                    </tr>
+                   </tr>
             ';
             $contador++;
 		}
@@ -61,7 +63,7 @@
 		if($total>=1){
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="7">
+					<td colspan="5">
 						<a href="'.$url.'1" class="button is-link is-rounded is-small mt-4 mb-4">
 							Haga clic acá para recargar el listado
 						</a>
@@ -71,7 +73,7 @@
 		}else{
 			$tabla.='
 				<tr class="has-text-centered" >
-					<td colspan="7">
+					<td colspan="5">
 						No hay registros en el sistema
 					</td>
 				</tr>
@@ -83,7 +85,7 @@
 	$tabla.='</tbody></table></div>';
 
 	if($total>0 && $pagina<=$Npaginas){
-		$tabla.='<p class="has-text-right">Mostrando estados <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
+		$tabla.='<p class="has-text-right">Mostrando categorías <strong>'.$pag_inicio.'</strong> al <strong>'.$pag_final.'</strong> de un <strong>total de '.$total.'</strong></p>';
 	}
 
 	$conexion=null;
@@ -92,3 +94,5 @@
 	if($total>=1 && $pagina<=$Npaginas){
 		echo paginador_tablas($pagina,$Npaginas,$url,7);
 	}
+
+
