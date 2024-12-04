@@ -17,8 +17,6 @@
             }
         }
 
-        $area_id=(isset($_GET['area_id'])) ?  $_GET['area_id'] : 0;
-
         $pagina=limpiar_cadena($pagina);
         $url="index.php?vista=area_list&page=";
         $registros=5;

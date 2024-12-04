@@ -94,7 +94,30 @@
 				</select>
 			</div>
 		</div>
-		</div>             
+		</div>      
+		
+		<div class="columns">    
+			  <div class="column">
+			<label>Área</label><br>
+			<div class="select is-rounded">
+				<select name="usuario_area">
+					<option value="" selected="" >Seleccione una opción</option>					
+					<?php
+					    $estadoareas=conexion();
+						$estadoareas=$estadoareas->query("SELECT * From area");
+						if($estadoareas->rowCount()>0){
+							$estadoareas=$estadoareas->fetchAll();
+							foreach($estadoareas as $row){
+								echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'</option>';
+
+							}
+						}
+						$estadoareas=null;
+					?>
+				</select>
+			</div>
+		</div>
+						
        
 		<p class="has-text-centered">
 			<button type="submit" class="button is-info is-rounded">Guardar</button>

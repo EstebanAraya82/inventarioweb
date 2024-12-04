@@ -73,6 +73,7 @@
 		      </div>
               </div>
               </div>
+			  <div class="columns">
               <div class="column">
 			<label>Estado</label><br>
 			<div class="select is-rounded">
@@ -113,7 +114,27 @@
 				</select>
 			</div>
 		</div>
-		</div>             
+		</div>  
+		<div class="column">
+			<label>Área</label><br>
+			<div class="select is-rounded">
+				<select name="usuario_area">
+					<option value="" selected="" >Seleccione area</option>					
+					<?php
+					    $estadoareas=conexion();
+						$estadoareas=$estadoareas->query("SELECT * From area");
+						if($estadoareas->rowCount()>0){
+							$estadoareas=$estadoareas->fetchAll();
+							foreach($estadoareas as $row){
+								echo '<option value="'.$row['area_id'].'" >'.$row['area_nombre'].'</option>';
+
+							}
+						}
+						$estadoareas=null;
+					?>
+				</select>
+			</div>
+		</div>           
 		<br><br><br>
 		<p class="has-text-centered">
 			Para poder actualizar los datos de este usuario por favor ingrese su USUARIO y CLAVE con la que ha iniciado sesión
